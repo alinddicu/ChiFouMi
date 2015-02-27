@@ -19,46 +19,26 @@ namespace ChiFouMi
         static void Main(string[] args)
         {
             _a0 = 0;
-            #region
             if (args.Any())
             {
                 if (args[_a0].Equals("roxor")) roxorMoMode = true;
             }
-            #endregion
 
-
-
-
-
-
-
-
-
-
-            #region intro
             _str = "exit";
             _strTextIntro = "Veuillez choisir un signe:";
             Console.WriteLine("Bienvenue dans mon chifumi," +
                               " ici c'est un appli de ROXXXXXXXXXXXXXXXOOR!");
             Console.WriteLine("Taper sur la touche entrée pour commencer une partie," +
                               " ou 'exit' pour quitter.");
-            #endregion
-
-            #region jeu
-            while (!
-                Initialize())
+            while (!Initialize())
             {
-                #region intro
-
                 Console.WriteLine(_strTextIntro);
                 for (int i = 0, cnt = 0; i < t.Count; i++)
                 {
                     Display();
                 }
                 _intUs = (char)(Console.ReadLine()[0] - 48);
-                #endregion
 
-                #region business logic
                 r = new Random(DateTime.Now.Millisecond);
                 _intUv = (char)(r.Next(1, 4).ToString()[0] - 48);
 
@@ -161,8 +141,6 @@ namespace ChiFouMi
                     Console.WriteLine("Perdu");
                 }
             }
-                #endregion
-            #endregion
         }
 
         private static bool roxorMoMode;
