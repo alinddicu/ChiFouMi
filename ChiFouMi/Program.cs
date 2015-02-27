@@ -33,9 +33,9 @@ namespace ChiFouMi
             while (!Initialize())
             {
                 Console.WriteLine(_strTextIntro);
-                for (int i = 0, cnt = 0; i < t.Count; i++)
+                for (var idChoix = 0; idChoix < t.Count; idChoix++)
                 {
-                    Display();
+                    Display(idChoix);
                 }
                 _intUs = (char)(Console.ReadLine()[0] - 48);
 
@@ -157,9 +157,9 @@ namespace ChiFouMi
             return Console.ReadLine().StartsWith(str_end);
         }
 
-        private static void Display()
+        private static void Display(int idChoix)
         {
-            Console.WriteLine(++cnt + "- " + t.ToArray()[cnt - 1]);
+            Console.WriteLine(++idChoix + "- " + t.ToArray()[idChoix-1]);
         }
     }
 }
