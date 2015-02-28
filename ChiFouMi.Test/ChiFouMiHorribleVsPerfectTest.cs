@@ -15,9 +15,10 @@
         [TestMethod]
         public void NoRoxxorTest()
         {
-            var inputLines = _inputLinesGenerator.Generate(1500).ToArray();
-            var horribleDependencies = new TestExternalDependencies(inputLines, DateTime.Now.Millisecond);
-            var perfectDependencies = new TestExternalDependencies(inputLines, DateTime.Now.Millisecond);
+            var inputLines = _inputLinesGenerator.Generate(2000).ToArray();
+            var seed = DateTime.Now.Millisecond;
+            var horribleDependencies = new TestExternalDependencies(inputLines, seed);
+            var perfectDependencies = new TestExternalDependencies(inputLines, seed);
             _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
             _perfectChiFouMi = new PerfectChiFouMi(perfectDependencies);
 
@@ -33,8 +34,9 @@
         public void RoxxorTest()
         {
             var inputLines = _inputLinesGenerator.Generate(4).ToArray();
-            var horribleDependencies = new TestExternalDependencies(inputLines, DateTime.Now.Millisecond);
-            var perfectDependencies = new TestExternalDependencies(inputLines, DateTime.Now.Millisecond);
+            var seed = DateTime.Now.Millisecond;
+            var horribleDependencies = new TestExternalDependencies(inputLines, seed);
+            var perfectDependencies = new TestExternalDependencies(inputLines, seed);
             _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
             _perfectChiFouMi = new PerfectChiFouMi(perfectDependencies);
 
