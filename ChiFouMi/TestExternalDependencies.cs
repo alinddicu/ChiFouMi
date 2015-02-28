@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class TestExternalDependencies : IExternalDependecies
     {
@@ -13,7 +14,7 @@
             IEnumerable<string> inputLines,
             int seedForRandomGenerator)
         {
-            _inputLines = new Stack<string>(inputLines);
+            _inputLines = new Stack<string>(inputLines.Reverse());
             _seedForRandomGenerator = seedForRandomGenerator;
         }
 

@@ -15,7 +15,7 @@
         public void GivenInputStringsWhenReadLineThenReturnCorrectStrings()
         {
             var list = new List<string>{"1", "2"};
-            list.Reverse();
+            //list.Reverse();
             _testExternalDependecies = new TestExternalDependencies(list, 1);
 
             Check.That(_testExternalDependecies.ReadLine()).IsEqualTo("1");
