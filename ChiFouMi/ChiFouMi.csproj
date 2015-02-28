@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="HorribleChiFouMi.cs" />
     <Compile Include="HorribleExternalDependecies.cs" />
+    <Compile Include="IChiFouMi.cs" />
     <Compile Include="IExternalDependecies.cs" />
     <Compile Include="PerfectChiFouMi.cs" />
     <Compile Include="Program.cs" />

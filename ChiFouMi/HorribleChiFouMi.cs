@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class HorribleChiFouMi
+    public class HorribleChiFouMi : IChiFouMi
     {
         public static int _a0;
         private static char _intUs;
