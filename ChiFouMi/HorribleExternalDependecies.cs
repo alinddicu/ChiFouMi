@@ -13,5 +13,10 @@
         {
             return Console.ReadLine();
         }
+
+        public int GetNextRandomBetween1And3()
+        {
+            return new Random(DateTime.Now.Millisecond).Next(1, 4);
+        }
     }
 }
