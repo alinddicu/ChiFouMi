@@ -20,7 +20,7 @@
 
             Check.That(EnumerableExtensions.Count(lines)).IsEqualTo(2 + linesNumber * 2);
             Check.That(lines.Last()).IsEqualTo("exit");
-            Check.That(lines[lines.Count()-2]).IsEqualTo(Environment.NewLine);
+            Check.That(lines[lines.Count() - 2]).IsEqualTo(Environment.NewLine);
             for (var i = 0; i < linesNumber * 2; i++)
             {
                 var lineValue = lines[i];
