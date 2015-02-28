@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="InputLinesGeneratorTest.cs" />
     <Compile Include="PerfectChiFouMiTest.cs" />
     <Compile Include="TestExternalDependenciesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

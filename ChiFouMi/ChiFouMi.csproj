@@ -45,6 +45,7 @@
     <Compile Include="HorribleExternalDependecies.cs" />
     <Compile Include="IChiFouMi.cs" />
     <Compile Include="IExternalDependecies.cs" />
+    <Compile Include="InputLinesGenerator.cs" />
     <Compile Include="PerfectChiFouMi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
