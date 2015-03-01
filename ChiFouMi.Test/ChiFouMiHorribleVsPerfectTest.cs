@@ -30,10 +30,10 @@
         }
 
         [TestMethod]
-        [Ignore]
         public void RoxxorTest()
         {
-            var inputLines = _inputLinesGenerator.Generate(4).ToArray();
+            var inputLines = _inputLinesGenerator.Generate(2000).ToList();
+            inputLines.RemoveAt(0);
             var seed = DateTime.Now.Millisecond;
             var horribleDependencies = new TestExternalDependencies(inputLines, seed);
             var perfectDependencies = new TestExternalDependencies(inputLines, seed);
