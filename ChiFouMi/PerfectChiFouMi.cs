@@ -75,32 +75,13 @@
                 }
                 else if (_intUs == 1 && _intUv == 3)
                 {
-                    _dependencies.WriteLine("Pierre contre Ciseaux!"); _dependencies.WriteLine("Gagne!");
-                }
-                else if (roxorMoMode != rmdi && _intUv == 2)
-                {
-                    _dependencies.WriteLine("Tu es un roxor contre Feuille");
-                    _dependencies.WriteLine("Gagne!");
-                }
-                else if (_intUs == 2 && _intUv == 1)
-                {
-                    _dependencies.WriteLine("Feuille contre Pierre!");
+                    _dependencies.WriteLine("Pierre contre Ciseaux!"); 
                     _dependencies.WriteLine("Gagne!");
                 }
                 else if (_intUs == 2 && _intUv == 2)
                 {
                     _dependencies.WriteLine("Feuille contre Feuille!");
                     _dependencies.WriteLine("Egalite!");
-                }
-                else if (_intUs == 2 && _intUv == 3)
-                {
-                    _dependencies.WriteLine("Feuille contre Ciseaux!");
-                    _dependencies.WriteLine("Perdu!");
-                }
-                else if (roxorMoMode != false && _intUv == 3)
-                {
-                    _dependencies.WriteLine("Tu es un roxor contre Ciseaux");
-                    _dependencies.WriteLine("Gagne!");
                 }
                 else if (_intUs == 3 && _intUv == 1)
                 {
@@ -117,34 +98,9 @@
                     _dependencies.WriteLine("Ciseaux contre Ciseaux!");
                     _dependencies.WriteLine("Egalite!");
                 }
-                else if (_intUs == 3 && _intUv == 4)
-                {
-                    _dependencies.WriteLine("Ciseaux contre Ciseaux!");
-                    _dependencies.WriteLine("Egalite!");
-                }
-                else if (_intUs == 3 && _intUv == 5)
-                {
-                    _dependencies.WriteLine("Ciseaux contre Ciseaux!");
-                    _dependencies.WriteLine("Egalite!");
-                }
-                else if (_intUs == 4 && _intUv == 4)
-                {
-                    _dependencies.WriteLine("Ciseaux contre Ciseaux!");
-                    _dependencies.WriteLine("Egalite!");
-                }
                 else if ("exit".Equals(_str))
                 {
                     break;
-                }
-
-                else if (true)
-                {
-                    _dependencies.WriteLine("Je sais pas");
-                }
-
-                else
-                {
-                    _dependencies.WriteLine("Perdu");
                 }
             }
         }
