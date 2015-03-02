@@ -1,6 +1,7 @@
 ﻿namespace ChiFouMi.Test
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
@@ -15,36 +16,34 @@
         [TestMethod]
         public void NoRoxxorTest()
         {
-            var inputLines = _inputLinesGenerator.Generate(2000).ToArray();
-            var seed = DateTime.Now.Millisecond;
-            var horribleDependencies = new TestExternalDependencies(inputLines, seed);
-            var perfectDependencies = new TestExternalDependencies(inputLines, seed);
-            _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
-            _perfectChiFouMi = new PerfectChiFouMi(perfectDependencies);
+            var inputLines = _inputLinesGenerator.Generate(20).ToArray();
 
-            var noRoxxorMode = new[] { "noRoxxorMode" };
-            _horribleChiFouMi.Play(noRoxxorMode);
-            _perfectChiFouMi.Play(noRoxxorMode);
-
-            Check.That(horribleDependencies.GetWrittenLines()).ContainsExactly(perfectDependencies.GetWrittenLines());
+            CheckResultWithMode(inputLines, "whatever");
         }
 
         [TestMethod]
         public void RoxxorTest()
         {
-            var inputLines = _inputLinesGenerator.Generate(2000).ToList();
+            var inputLines = _inputLinesGenerator.Generate(20).ToList();
             inputLines.RemoveAt(0);
-            var seed = DateTime.Now.Millisecond;
-            var horribleDependencies = new TestExternalDependencies(inputLines, seed);
-            var perfectDependencies = new TestExternalDependencies(inputLines, seed);
-            _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
-            _perfectChiFouMi = new PerfectChiFouMi(perfectDependencies);
+            CheckResultWithMode(inputLines, "roxor");
+        }
 
-            var roxor = new[] { "roxor" };
-            _horribleChiFouMi.Play(roxor);
-            _perfectChiFouMi.Play(roxor);
+        private void CheckResultWithMode(IList<string> inputLines, string mode)
+        {
+            for (var seed = 0; seed < 100; seed++)
+            {
+                var horribleDependencies = new TestExternalDependencies(inputLines, seed);
+                var perfectDependencies = new TestExternalDependencies(inputLines, seed);
+                _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
+                _perfectChiFouMi = new PerfectChiFouMi(perfectDependencies);
 
-            Check.That(horribleDependencies.GetWrittenLines()).ContainsExactly(perfectDependencies.GetWrittenLines());
+                var roxor = new[] {mode};
+                _horribleChiFouMi.Play(roxor);
+                _perfectChiFouMi.Play(roxor);
+
+                Check.That(horribleDependencies.GetWrittenLines()).ContainsExactly(perfectDependencies.GetWrittenLines());
+            }
         }
     }
 }

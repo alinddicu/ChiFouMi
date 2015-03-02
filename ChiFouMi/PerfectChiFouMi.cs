@@ -8,8 +8,8 @@
         private const string ExitPhrase = "exit";
         private const string TextIntro = "Veuillez choisir un signe:";
 
-        private int _intUs;
-        private int _intUv;
+        private int _playerChoice;
+        private int _computerChoice;
 
         private readonly Stack<string> t = new Stack<string>();
 
@@ -46,56 +46,56 @@
                 {
                     Display(idChoix);
                 }
-                _intUs = (char)(_dependencies.ReadLine()[0] - 48);
+                _playerChoice = (char)(_dependencies.ReadLine()[0] - 48);
 
-                _intUv = (char)(_dependencies.GetNextRandomBetween1And3().ToString()[0] - 48);
+                _computerChoice = (char)(_dependencies.GetNextRandomBetween1And3().ToString()[0] - 48);
 
-                if (_roxorMode && _intUv == 1)
+                if (_roxorMode && _computerChoice == 1)
                 {
                     _dependencies.WriteLine("Tu es un roxor contre Pierre");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_intUs == 1 && _intUv == 1)
-                {
-                    _dependencies.WriteLine("Pierre contre Pierre!");
-                    _dependencies.WriteLine("Egalite!");
-                }
-                else if (_roxorMode && _intUv == 2)
+                else if (_roxorMode && _computerChoice == 2)
                 {
                     _dependencies.WriteLine("Tu es un roxor contre Feuille");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_intUs - 1 == _intUv % 2)
-                {
-                    _dependencies.WriteLine("Pierre contre Feuille!");
-                    _dependencies.WriteLine("Perdu!");
-                }
-                else if (_roxorMode && _intUv == 3)
+                else if (_roxorMode && _computerChoice == 3)
                 {
                     _dependencies.WriteLine("Tu es un roxor contre Ciseaux");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_intUs == 1 && _intUv == 3)
+                else if (_playerChoice - 1 == _computerChoice % 2)
+                {
+                    _dependencies.WriteLine("Pierre contre Feuille!");
+                    _dependencies.WriteLine("Perdu!");
+                }
+                else if (_playerChoice == 1 && _computerChoice == 3)
                 {
                     _dependencies.WriteLine("Pierre contre Ciseaux!");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_intUs == 2 && _intUv == 2)
-                {
-                    _dependencies.WriteLine("Feuille contre Feuille!");
-                    _dependencies.WriteLine("Egalite!");
-                }
-                else if (_intUs == 3 && _intUv == 1)
+                else if (_playerChoice == 3 && _computerChoice == 1)
                 {
                     _dependencies.WriteLine("Ciseaux contre Pierre!");
                     _dependencies.WriteLine("Perdu!");
                 }
-                else if (_intUs == 3 && _intUv % 2 == 0)
+                else if (_playerChoice == 3 && _computerChoice == 2)
                 {
                     _dependencies.WriteLine("Ciseaux contre Feuille!");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_intUs == _intUv)
+                else if (_playerChoice == 1 && _computerChoice == 1)
+                {
+                    _dependencies.WriteLine("Pierre contre Pierre!");
+                    _dependencies.WriteLine("Egalite!");
+                }
+                else if (_playerChoice == 2 && _computerChoice == 2)
+                {
+                    _dependencies.WriteLine("Feuille contre Feuille!");
+                    _dependencies.WriteLine("Egalite!");
+                }
+                else if (_playerChoice == 3 && _computerChoice == 3)
                 {
                     _dependencies.WriteLine("Ciseaux contre Ciseaux!");
                     _dependencies.WriteLine("Egalite!");
