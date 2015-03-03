@@ -1,10 +1,8 @@
 ﻿namespace ChiFouMi.Perfect
 {
-    using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
-    using System.Text;
+    using Variants;
 
     public class ChiFouMi : IChiFouMi
     {
@@ -12,35 +10,31 @@
         private const string ChoisirCoupText = "Veuillez choisir un signe:";
         private const string BienvenueText = "Bienvenue dans mon chifumi, ici c'est un appli de ROXXXXXXXXXXXXXXXOOR!";
         private const string EntreeOuExitText = "Taper sur la touche entrée pour commencer une partie, ou 'exit' pour quitter.";
-
-        private CoupType _playerChoice;
-        private CoupType _computerChoice;
-
-        private bool _roxorMode;
-
+        
         private readonly IExternalDependencies _dependencies;
         private readonly DisplayChoixCoupGenerator _displayChoixCoup;
         private readonly InputToCoupTypeConverter _inputToCoupTypeConverter;
+        private readonly VariantTypeConverter _variantTypeConverter;
+        private readonly IChiFouMiVariant[] _variants;
 
         public ChiFouMi(
             IExternalDependencies dependencies,
             DisplayChoixCoupGenerator displayChoixCoup,
-            InputToCoupTypeConverter inputToCoupTypeConverter)
+            InputToCoupTypeConverter inputToCoupTypeConverter,
+            VariantTypeConverter variantTypeConverter,
+            ChiFouMiVariantsFactory chiFouMiVariantsFactory)
         {
             _dependencies = dependencies;
             _displayChoixCoup = displayChoixCoup;
             _inputToCoupTypeConverter = inputToCoupTypeConverter;
+            _variantTypeConverter = variantTypeConverter;
+            _variants = chiFouMiVariantsFactory.Create(_dependencies).ToArray();
         }
 
-        public void Play(string[] args)
+        public void Play(string[] userInputArguments)
         {
-            if (args.Any())
-            {
-                if (args[0].Equals("roxor"))
-                {
-                    _roxorMode = true;
-                }
-            }
+            var variantType = ConvertToVariantType(userInputArguments);
+            var variant = _variants.First(v => v.CanPlay(variantType));
 
             _dependencies.WriteLine(BienvenueText);
             _dependencies.WriteLine(EntreeOuExitText);
@@ -49,60 +43,10 @@
                 _dependencies.WriteLine(ChoisirCoupText);
                 DisplayChoixCoup();
 
-                _playerChoice = _inputToCoupTypeConverter.Convert(_dependencies.ReadLine());
-                _computerChoice = _inputToCoupTypeConverter.Convert(_dependencies.GetNextRandomBetween1And3().ToString());
+                var playerChoice = _inputToCoupTypeConverter.Convert(_dependencies.ReadLine());
+                var turnResult = variant.PlayTurn(playerChoice);
 
-                if (_roxorMode && _computerChoice == CoupType.Pierre)
-                {
-                    _dependencies.WriteLine("Tu es un roxor contre Pierre");
-                    _dependencies.WriteLine("Gagne!");
-                }
-                else if (_roxorMode && _computerChoice == CoupType.Feuille)
-                {
-                    _dependencies.WriteLine("Tu es un roxor contre Feuille");
-                    _dependencies.WriteLine("Gagne!");
-                }
-                else if (_roxorMode && _computerChoice == CoupType.Ciseaux)
-                {
-                    _dependencies.WriteLine("Tu es un roxor contre Ciseaux");
-                    _dependencies.WriteLine("Gagne!");
-                }
-                else if ((int)_playerChoice - 1 == (int)_computerChoice % 2)
-                {
-                    _dependencies.WriteLine("Pierre contre Feuille!");
-                    _dependencies.WriteLine("Perdu!");
-                }
-                else if (_playerChoice == CoupType.Pierre && _computerChoice == CoupType.Ciseaux)
-                {
-                    _dependencies.WriteLine("Pierre contre Ciseaux!");
-                    _dependencies.WriteLine("Gagne!");
-                }
-                else if (_playerChoice == CoupType.Ciseaux && _computerChoice == CoupType.Pierre)
-                {
-                    _dependencies.WriteLine("Ciseaux contre Pierre!");
-                    _dependencies.WriteLine("Perdu!");
-                }
-                else if (_playerChoice == CoupType.Ciseaux && _computerChoice == CoupType.Feuille)
-                {
-                    _dependencies.WriteLine("Ciseaux contre Feuille!");
-                    _dependencies.WriteLine("Gagne!");
-                }
-                else if (_playerChoice == CoupType.Pierre && _computerChoice == CoupType.Pierre)
-                {
-                    _dependencies.WriteLine("Pierre contre Pierre!");
-                    _dependencies.WriteLine("Egalite!");
-                }
-                else if (_playerChoice == CoupType.Feuille && _computerChoice == CoupType.Feuille)
-                {
-                    _dependencies.WriteLine("Feuille contre Feuille!");
-                    _dependencies.WriteLine("Egalite!");
-                }
-                else if (_playerChoice == CoupType.Ciseaux && _computerChoice == CoupType.Ciseaux)
-                {
-                    _dependencies.WriteLine("Ciseaux contre Ciseaux!");
-                    _dependencies.WriteLine("Egalite!");
-                }
-                else
+                if (turnResult == TurnResult.Exit)
                 {
                     break;
                 }
@@ -120,6 +64,16 @@
             {
                 _dependencies.WriteLine(choixCoup);
             }
+        }
+
+        private VariantType ConvertToVariantType(IList<string> userInputArguments)
+        {
+            if (!userInputArguments.Any())
+            {
+                return VariantType.Common;
+            }
+
+            return _variantTypeConverter.Convert(userInputArguments[0]);
         }
     }
 }

@@ -6,18 +6,18 @@ namespace ChiFouMi.Perfect
     {
         public CoupType Convert(object input)
         {
-            var converterValue = CoupType.None;
+            var convertedValue = CoupType.None;
             if (input == null)
             {
-                return converterValue;
+                return convertedValue;
             }
 
-            if (Enum.TryParse<CoupType>(input.ToString(), out converterValue))
+            if (Enum.TryParse<CoupType>(input.ToString(), out convertedValue))
             {
-                return converterValue;
+                return convertedValue;
             }
 
-            return converterValue;
+            return convertedValue;
         }
     }
 }

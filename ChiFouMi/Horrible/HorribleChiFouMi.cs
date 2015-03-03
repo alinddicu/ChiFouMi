@@ -22,13 +22,13 @@
             _dependencies = dependencies;
         }
 
-        public void Play(string[] args)
+        public void Play(string[] userInputArguments)
         {
             _a0 = 0;
             #region
-            if (args.Any())
+            if (userInputArguments.Any())
             {
-                if (args[_a0].Equals("roxor")) roxorMoMode = true;
+                if (userInputArguments[_a0].Equals("roxor")) roxorMoMode = true;
             }
             #endregion
 

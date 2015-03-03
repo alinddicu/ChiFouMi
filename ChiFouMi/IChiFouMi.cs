@@ -2,6 +2,6 @@
 {
     public interface IChiFouMi
     {
-        void Play(string[] args);
+        void Play(string[] userInputArguments);
     }
 }
