@@ -1,4 +1,4 @@
-﻿namespace ChiFouMi
+﻿namespace ChiFouMi.Test
 {
     using System;
     using System.Collections.Generic;

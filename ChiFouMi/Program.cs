@@ -1,6 +1,8 @@
 ﻿namespace ChiFouMi
 {
-    static class Program
+    using ChiFouMi.Horrible;
+
+    internal static class Program
     {
         private static readonly IChiFouMi ChiFouMi = new HorribleChiFouMi(new HorribleExternalDependecies());
 

@@ -1,14 +1,15 @@
-﻿namespace ChiFouMi.Test
+﻿namespace ChiFouMi.Test.Perfect
 {
     using System;
     using System.Collections.Generic;
+    using ChiFouMi.Perfect;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 
     [TestClass]
-    public class PerfectChiFouMiTest
+    public class ChiFouMiTest
     {
-        private PerfectChiFouMi _perfectChiFouMi;
+        private ChiFouMi _perfectChiFouMi;
 
         [TestMethod]
         public void GivenTestDependencyInjectionInPerfectChiFouMiWhenPlayThenLinesAreGeneratedAndExit()
@@ -23,7 +24,7 @@
                 "exit"
             };
             var dependencies = new TestExternalDependencies(inputLines, 1);
-            _perfectChiFouMi = new PerfectChiFouMi(dependencies);
+            _perfectChiFouMi = new ChiFouMi(dependencies, new DisplayChoixCoup());
 
             _perfectChiFouMi.Play(new[] { Environment.NewLine });
 

@@ -1,4 +1,4 @@
-﻿namespace ChiFouMi
+﻿namespace ChiFouMi.Horrible
 {
     using System;
     using System.Collections.Generic;
@@ -15,9 +15,9 @@
         private static bool rmdi = false;
         public static string str_end = "exit";
 
-        private readonly IExternalDependecies _dependencies;
+        private readonly IExternalDependencies _dependencies;
 
-        public HorribleChiFouMi(IExternalDependecies dependencies)
+        public HorribleChiFouMi(IExternalDependencies dependencies)
         {
             _dependencies = dependencies;
         }
@@ -31,15 +31,6 @@
                 if (args[_a0].Equals("roxor")) roxorMoMode = true;
             }
             #endregion
-
-
-
-
-
-
-
-
-
 
             #region intro
             _str = "exit";
@@ -129,14 +120,6 @@
                     _dependencies.WriteLine("Gagne!");
                 }
 
-
-
-
-
-
-
-
-
                     // TODO: better syntaxe, it's more compact. Right ? If ok vote on https://framadate.org/dsfsdfgnys7y7wxkiujpfi1z/admin
                 // Link DEAD!
                 // https://framadate.org/dsfsdfgnysfdf7wxkiujpfi1z/admin
@@ -163,7 +146,6 @@
                     _dependencies.WriteLine("Egalite!");
                 }
                 // Evolution, 14522
-
                 else if (_intUs == 2 && _intUv == 3)
                 {
                     _dependencies.WriteLine("Feuille contre Ciseaux!");
@@ -192,7 +174,6 @@
                 //    _dependencies.WriteLine("Tu es un roxor contre Spock");
                 //    _dependencies.WriteLine("Gagne!");
                 //}
-
                 else if (_intUs == _intUv)
                 {
                     _dependencies.WriteLine("Ciseaux contre Ciseaux!");
@@ -218,12 +199,10 @@
                 {
                     break;
                 }
-
                 else if (true)
                 {
                     _dependencies.WriteLine("Je sais pas");
                 }
-
                 else
                 {
                     _dependencies.WriteLine("Perdu");

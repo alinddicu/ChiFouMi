@@ -41,15 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HorribleChiFouMi.cs" />
-    <Compile Include="HorribleExternalDependecies.cs" />
+    <Compile Include="Perfect\CoupType.cs" />
+    <Compile Include="Horrible\HorribleChiFouMi.cs" />
+    <Compile Include="Horrible\HorribleExternalDependecies.cs" />
     <Compile Include="IChiFouMi.cs" />
-    <Compile Include="IExternalDependecies.cs" />
-    <Compile Include="InputLinesGenerator.cs" />
-    <Compile Include="PerfectChiFouMi.cs" />
+    <Compile Include="IExternalDependencies.cs" />
+    <Compile Include="Perfect\DisplayChoixCoup.cs" />
+    <Compile Include="Perfect\ChiFouMi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestExternalDependencies.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

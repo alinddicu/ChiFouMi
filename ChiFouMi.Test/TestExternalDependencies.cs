@@ -1,10 +1,10 @@
-﻿namespace ChiFouMi
+﻿namespace ChiFouMi.Test
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TestExternalDependencies : IExternalDependecies
+    public class TestExternalDependencies : IExternalDependencies
     {
         private readonly List<string> _linesBuffer = new List<string>();
         private readonly Stack<string> _inputLines;

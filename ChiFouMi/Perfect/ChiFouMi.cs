@@ -1,9 +1,12 @@
-﻿namespace ChiFouMi
+﻿namespace ChiFouMi.Perfect
 {
+    using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
+    using System.Text;
 
-    public class PerfectChiFouMi : IChiFouMi
+    public class ChiFouMi : IChiFouMi
     {
         private const string ExitPhrase = "exit";
         private const string ChoisirCoupText = "Veuillez choisir un signe:";
@@ -13,18 +16,15 @@
         private int _playerChoice;
         private int _computerChoice;
 
-        private readonly Stack<string> t = new Stack<string>();
-
         private bool _roxorMode;
 
-        private readonly IExternalDependecies _dependencies;
+        private readonly IExternalDependencies _dependencies;
+        private readonly DisplayChoixCoup _displayChoixCoup;
 
-        public PerfectChiFouMi(IExternalDependecies dependencies)
+        public ChiFouMi(IExternalDependencies dependencies, DisplayChoixCoup displayChoixCoup)
         {
             _dependencies = dependencies;
-            t.Push("Ciseaux");
-            t.Push("Feuille");
-            t.Push("Pierre");
+            _displayChoixCoup = displayChoixCoup;
         }
 
         public void Play(string[] args)
@@ -42,10 +42,8 @@
             while (!Initialize())
             {
                 _dependencies.WriteLine(ChoisirCoupText);
-                for (var idChoix = 0; idChoix < t.Count; idChoix++)
-                {
-                    Display(idChoix);
-                }
+                DisplayChoixCoup();
+
                 _playerChoice = (char)(_dependencies.ReadLine()[0] - 48);
 
                 _computerChoice = (char)(_dependencies.GetNextRandomBetween1And3().ToString()[0] - 48);
@@ -112,9 +110,12 @@
             return _dependencies.ReadLine().StartsWith(ExitPhrase);
         }
 
-        private void Display(int idChoix)
+        private void DisplayChoixCoup()
         {
-            _dependencies.WriteLine(++idChoix + "- " + t.ToArray()[idChoix - 1]);
+            foreach (var choixCoup in _displayChoixCoup.Get())
+            {
+                _dependencies.WriteLine(choixCoup);
+            }
         }
     }
 }

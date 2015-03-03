@@ -1,8 +1,9 @@
 ﻿namespace ChiFouMi.Test
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using ChiFouMi.Horrible;
+    using ChiFouMi.Perfect;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 
@@ -11,7 +12,7 @@
     {
         private readonly InputLinesGenerator _inputLinesGenerator = new InputLinesGenerator();
         private HorribleChiFouMi _horribleChiFouMi;
-        private PerfectChiFouMi _perfectChiFouMi;
+        private ChiFouMi _perfectChiFouMi;
 
         [TestMethod]
         public void NoRoxxorTest()
@@ -36,9 +37,9 @@
                 var horribleDependencies = new TestExternalDependencies(inputLines, seed);
                 var perfectDependencies = new TestExternalDependencies(inputLines, seed);
                 _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
-                _perfectChiFouMi = new PerfectChiFouMi(perfectDependencies);
+                _perfectChiFouMi = new ChiFouMi(perfectDependencies, new DisplayChoixCoup());
 
-                var roxor = new[] {mode};
+                var roxor = new[] { mode };
                 _horribleChiFouMi.Play(roxor);
                 _perfectChiFouMi.Play(roxor);
 

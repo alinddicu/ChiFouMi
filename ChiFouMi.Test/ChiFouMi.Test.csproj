@@ -54,8 +54,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ChiFouMiHorribleVsPerfectTest.cs" />
+    <Compile Include="InputLinesGenerator.cs" />
     <Compile Include="InputLinesGeneratorTest.cs" />
-    <Compile Include="PerfectChiFouMiTest.cs" />
+    <Compile Include="Perfect\ChiFouMiTest.cs" />
+    <Compile Include="Perfect\DisplayChoixCoupTest.cs" />
+    <Compile Include="TestExternalDependencies.cs" />
     <Compile Include="TestExternalDependenciesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

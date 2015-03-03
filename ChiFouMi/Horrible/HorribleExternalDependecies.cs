@@ -1,8 +1,8 @@
-﻿namespace ChiFouMi
+﻿namespace ChiFouMi.Horrible
 {
     using System;
 
-    public class HorribleExternalDependecies : IExternalDependecies
+    public class HorribleExternalDependecies : IExternalDependencies
     {
         public void WriteLine(string line)
         {
