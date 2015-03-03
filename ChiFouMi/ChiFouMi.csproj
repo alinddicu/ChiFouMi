@@ -48,6 +48,7 @@
     <Compile Include="IExternalDependencies.cs" />
     <Compile Include="Perfect\DisplayChoixCoupGenerator.cs" />
     <Compile Include="Perfect\ChiFouMi.cs" />
+    <Compile Include="Perfect\InputToCoupTypeConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

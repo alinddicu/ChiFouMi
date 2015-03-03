@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ChiFouMiHorribleVsPerfectTest.cs" />
+    <Compile Include="Perfect\InputToCoupTypeConverterTest.cs" />
     <Compile Include="TestHelpers\InputLinesGenerator.cs" />
     <Compile Include="TestHelpers\InputLinesGeneratorTest.cs" />
     <Compile Include="Perfect\ChiFouMiTest.cs" />

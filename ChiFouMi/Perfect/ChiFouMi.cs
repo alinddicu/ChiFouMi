@@ -13,18 +13,23 @@
         private const string BienvenueText = "Bienvenue dans mon chifumi, ici c'est un appli de ROXXXXXXXXXXXXXXXOOR!";
         private const string EntreeOuExitText = "Taper sur la touche entrée pour commencer une partie, ou 'exit' pour quitter.";
 
-        private int _playerChoice;
-        private int _computerChoice;
+        private CoupType _playerChoice;
+        private CoupType _computerChoice;
 
         private bool _roxorMode;
 
         private readonly IExternalDependencies _dependencies;
         private readonly DisplayChoixCoupGenerator _displayChoixCoup;
+        private readonly InputToCoupTypeConverter _inputToCoupTypeConverter;
 
-        public ChiFouMi(IExternalDependencies dependencies, DisplayChoixCoupGenerator displayChoixCoup)
+        public ChiFouMi(
+            IExternalDependencies dependencies,
+            DisplayChoixCoupGenerator displayChoixCoup,
+            InputToCoupTypeConverter inputToCoupTypeConverter)
         {
             _dependencies = dependencies;
             _displayChoixCoup = displayChoixCoup;
+            _inputToCoupTypeConverter = inputToCoupTypeConverter;
         }
 
         public void Play(string[] args)
@@ -39,61 +44,60 @@
 
             _dependencies.WriteLine(BienvenueText);
             _dependencies.WriteLine(EntreeOuExitText);
-            while (!Initialize())
+            while (!ShouldExit())
             {
                 _dependencies.WriteLine(ChoisirCoupText);
                 DisplayChoixCoup();
 
-                _playerChoice = (char)(_dependencies.ReadLine()[0] - 48);
+                _playerChoice = _inputToCoupTypeConverter.Convert(_dependencies.ReadLine());
+                _computerChoice = _inputToCoupTypeConverter.Convert(_dependencies.GetNextRandomBetween1And3().ToString());
 
-                _computerChoice = (char)(_dependencies.GetNextRandomBetween1And3().ToString()[0] - 48);
-
-                if (_roxorMode && _computerChoice == 1)
+                if (_roxorMode && _computerChoice == CoupType.Pierre)
                 {
                     _dependencies.WriteLine("Tu es un roxor contre Pierre");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_roxorMode && _computerChoice == 2)
+                else if (_roxorMode && _computerChoice == CoupType.Feuille)
                 {
                     _dependencies.WriteLine("Tu es un roxor contre Feuille");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_roxorMode && _computerChoice == 3)
+                else if (_roxorMode && _computerChoice == CoupType.Ciseaux)
                 {
                     _dependencies.WriteLine("Tu es un roxor contre Ciseaux");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_playerChoice - 1 == _computerChoice % 2)
+                else if ((int)_playerChoice - 1 == (int)_computerChoice % 2)
                 {
                     _dependencies.WriteLine("Pierre contre Feuille!");
                     _dependencies.WriteLine("Perdu!");
                 }
-                else if (_playerChoice == 1 && _computerChoice == 3)
+                else if (_playerChoice == CoupType.Pierre && _computerChoice == CoupType.Ciseaux)
                 {
                     _dependencies.WriteLine("Pierre contre Ciseaux!");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_playerChoice == 3 && _computerChoice == 1)
+                else if (_playerChoice == CoupType.Ciseaux && _computerChoice == CoupType.Pierre)
                 {
                     _dependencies.WriteLine("Ciseaux contre Pierre!");
                     _dependencies.WriteLine("Perdu!");
                 }
-                else if (_playerChoice == 3 && _computerChoice == 2)
+                else if (_playerChoice == CoupType.Ciseaux && _computerChoice == CoupType.Feuille)
                 {
                     _dependencies.WriteLine("Ciseaux contre Feuille!");
                     _dependencies.WriteLine("Gagne!");
                 }
-                else if (_playerChoice == 1 && _computerChoice == 1)
+                else if (_playerChoice == CoupType.Pierre && _computerChoice == CoupType.Pierre)
                 {
                     _dependencies.WriteLine("Pierre contre Pierre!");
                     _dependencies.WriteLine("Egalite!");
                 }
-                else if (_playerChoice == 2 && _computerChoice == 2)
+                else if (_playerChoice == CoupType.Feuille && _computerChoice == CoupType.Feuille)
                 {
                     _dependencies.WriteLine("Feuille contre Feuille!");
                     _dependencies.WriteLine("Egalite!");
                 }
-                else if (_playerChoice == 3 && _computerChoice == 3)
+                else if (_playerChoice == CoupType.Ciseaux && _computerChoice == CoupType.Ciseaux)
                 {
                     _dependencies.WriteLine("Ciseaux contre Ciseaux!");
                     _dependencies.WriteLine("Egalite!");
@@ -105,7 +109,7 @@
             }
         }
 
-        private bool Initialize()
+        private bool ShouldExit()
         {
             return _dependencies.ReadLine().StartsWith(ExitPhrase);
         }
