@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class HorribleExternalDependecies : IExternalDependencies
+    public class HorribleExternalDependecies : ISystemDependencies
     {
         public void WriteLine(string line)
         {

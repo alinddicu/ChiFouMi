@@ -46,7 +46,7 @@
     <Compile Include="Horrible\HorribleChiFouMi.cs" />
     <Compile Include="Horrible\HorribleExternalDependecies.cs" />
     <Compile Include="IChiFouMi.cs" />
-    <Compile Include="IExternalDependencies.cs" />
+    <Compile Include="ISystemDependencies.cs" />
     <Compile Include="Perfect\DisplayChoixCoupGenerator.cs" />
     <Compile Include="Perfect\ChiFouMi.cs" />
     <Compile Include="Perfect\InputToCoupTypeConverter.cs" />

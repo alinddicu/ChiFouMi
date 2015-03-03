@@ -11,69 +11,72 @@
         private const string BienvenueText = "Bienvenue dans mon chifumi, ici c'est un appli de ROXXXXXXXXXXXXXXXOOR!";
         private const string EntreeOuExitText = "Taper sur la touche entrée pour commencer une partie, ou 'exit' pour quitter.";
         
-        private readonly IExternalDependencies _dependencies;
+        private readonly ISystemDependencies _systemDependencies;
         private readonly DisplayChoixCoupGenerator _displayChoixCoup;
         private readonly InputToCoupTypeConverter _inputToCoupTypeConverter;
         private readonly VariantTypeConverter _variantTypeConverter;
-        private readonly IChiFouMiVariant[] _variants;
+        private readonly IChiFouMiVariant[] _allVariants;
 
         public ChiFouMi(
-            IExternalDependencies dependencies,
+            ISystemDependencies systemDependencies,
             DisplayChoixCoupGenerator displayChoixCoup,
             InputToCoupTypeConverter inputToCoupTypeConverter,
             VariantTypeConverter variantTypeConverter,
             ChiFouMiVariantsFactory chiFouMiVariantsFactory)
         {
-            _dependencies = dependencies;
+            _systemDependencies = systemDependencies;
             _displayChoixCoup = displayChoixCoup;
             _inputToCoupTypeConverter = inputToCoupTypeConverter;
             _variantTypeConverter = variantTypeConverter;
-            _variants = chiFouMiVariantsFactory.Create(_dependencies).ToArray();
+            _allVariants = chiFouMiVariantsFactory.Create(_systemDependencies).ToArray();
         }
 
         public void Play(string[] userInputArguments)
         {
-            var variantType = ConvertToVariantType(userInputArguments);
-            var variant = _variants.First(v => v.CanPlay(variantType));
+            SetMessageAccueil();
 
-            _dependencies.WriteLine(BienvenueText);
-            _dependencies.WriteLine(EntreeOuExitText);
+            var chosenVariant = GetChosenVariant(userInputArguments);
             while (!ShouldExit())
             {
-                _dependencies.WriteLine(ChoisirCoupText);
+                _systemDependencies.WriteLine(ChoisirCoupText);
                 DisplayChoixCoup();
 
-                var playerChoice = _inputToCoupTypeConverter.Convert(_dependencies.ReadLine());
-                var turnResult = variant.PlayTurn(playerChoice);
-
-                if (turnResult == TurnResult.Exit)
+                var playerChoice = _inputToCoupTypeConverter.Convert(_systemDependencies.ReadLine());
+                if (chosenVariant.PlayTurn(playerChoice) == TurnResult.Exit)
                 {
                     break;
                 }
             }
         }
 
+        private IChiFouMiVariant GetChosenVariant(IList<string> userInputArguments)
+        {
+            var variantType = ConvertToVariantType(userInputArguments);
+            return _allVariants.First(v => v.CanPlay(variantType));
+        }
+
+        private void SetMessageAccueil()
+        {
+            _systemDependencies.WriteLine(BienvenueText);
+            _systemDependencies.WriteLine(EntreeOuExitText);
+        }
+
         private bool ShouldExit()
         {
-            return _dependencies.ReadLine().StartsWith(ExitPhrase);
+            return _systemDependencies.ReadLine().StartsWith(ExitPhrase);
         }
 
         private void DisplayChoixCoup()
         {
             foreach (var choixCoup in _displayChoixCoup.Get())
             {
-                _dependencies.WriteLine(choixCoup);
+                _systemDependencies.WriteLine(choixCoup);
             }
         }
 
         private VariantType ConvertToVariantType(IList<string> userInputArguments)
         {
-            if (!userInputArguments.Any())
-            {
-                return VariantType.Common;
-            }
-
-            return _variantTypeConverter.Convert(userInputArguments[0]);
+            return !userInputArguments.Any() ? VariantType.Common : _variantTypeConverter.Convert(userInputArguments[0]);
         }
     }
 }

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class TestExternalDependencies : IExternalDependencies
+    public class TestExternalDependencies : ISystemDependencies
     {
         private readonly List<string> _linesBuffer = new List<string>();
         private readonly Stack<string> _inputLines;

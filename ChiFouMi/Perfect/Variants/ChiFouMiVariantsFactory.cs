@@ -4,7 +4,7 @@
 
     public class ChiFouMiVariantsFactory
     {
-        public IEnumerable<IChiFouMiVariant> Create(IExternalDependencies externalDependencies)
+        public IEnumerable<IChiFouMiVariant> Create(ISystemDependencies externalDependencies)
         {
             yield return new CommonVariant(externalDependencies, new InputToCoupTypeConverter());
             yield return new RoxorVariant(externalDependencies, new InputToCoupTypeConverter());

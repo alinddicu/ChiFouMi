@@ -1,6 +1,6 @@
 ﻿namespace ChiFouMi
 {
-    public interface IExternalDependencies
+    public interface ISystemDependencies
     {
         void WriteLine(string line);
 

@@ -4,7 +4,7 @@
 
     public class ChiFouMiFactory
     {
-        public ChiFouMi Create(IExternalDependencies dependencies)
+        public ChiFouMi Create(ISystemDependencies dependencies)
         {
             return new ChiFouMi(
                 dependencies, 
