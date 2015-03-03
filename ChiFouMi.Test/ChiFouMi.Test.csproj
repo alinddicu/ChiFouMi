@@ -57,7 +57,7 @@
     <Compile Include="TestHelpers\InputLinesGenerator.cs" />
     <Compile Include="TestHelpers\InputLinesGeneratorTest.cs" />
     <Compile Include="Perfect\ChiFouMiTest.cs" />
-    <Compile Include="Perfect\DisplayChoixCoupTest.cs" />
+    <Compile Include="Perfect\DisplayChoixCoupGeneratorTest.cs" />
     <Compile Include="TestHelpers\TestExternalDependencies.cs" />
     <Compile Include="TestHelpers\TestExternalDependenciesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

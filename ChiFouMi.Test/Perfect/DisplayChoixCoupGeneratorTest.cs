@@ -5,14 +5,14 @@
     using NFluent;
 
     [TestClass]
-    public class DisplayChoixCoupTest
+    public class DisplayChoixCoupGeneratorTest
     {
-        private DisplayChoixCoup _displayer;
+        private DisplayChoixCoupGenerator _displayer;
 
         [TestInitialize]
         public void Initialize()
         {
-            _displayer = new DisplayChoixCoup();
+            _displayer = new DisplayChoixCoupGenerator();
         }
 
         [TestMethod]

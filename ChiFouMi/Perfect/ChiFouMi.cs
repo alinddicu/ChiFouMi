@@ -19,9 +19,9 @@
         private bool _roxorMode;
 
         private readonly IExternalDependencies _dependencies;
-        private readonly DisplayChoixCoup _displayChoixCoup;
+        private readonly DisplayChoixCoupGenerator _displayChoixCoup;
 
-        public ChiFouMi(IExternalDependencies dependencies, DisplayChoixCoup displayChoixCoup)
+        public ChiFouMi(IExternalDependencies dependencies, DisplayChoixCoupGenerator displayChoixCoup)
         {
             _dependencies = dependencies;
             _displayChoixCoup = displayChoixCoup;

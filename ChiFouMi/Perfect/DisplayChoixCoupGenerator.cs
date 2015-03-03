@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Globalization;
 
-    public class DisplayChoixCoup
+    public class DisplayChoixCoupGenerator
     {
         private const string ChoixCoupLineFormat = "{0}- {1}";
 
