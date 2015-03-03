@@ -1,4 +1,4 @@
-﻿namespace ChiFouMi.Test
+﻿namespace ChiFouMi.Test.TestHelpers
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,7 @@
         [TestMethod]
         public void GivenInputStringsWhenReadLineThenReturnCorrectStrings()
         {
-            var list = new List<string>{"1", "2"};
+            var list = new List<string> { "1", "2" };
             //list.Reverse();
             _testExternalDependecies = new TestExternalDependencies(list, 1);
 
@@ -44,7 +44,7 @@
 
             for (var i = 0; i < 1000; i++)
             {
-                Check.That(random1.Next(1, 100000)).IsEqualTo(random2.Next(1, 100000));   
+                Check.That(random1.Next(1, 100000)).IsEqualTo(random2.Next(1, 100000));
             }
         }
 

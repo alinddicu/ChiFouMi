@@ -4,6 +4,7 @@
     using System.Linq;
     using ChiFouMi.Horrible;
     using ChiFouMi.Perfect;
+    using ChiFouMi.Test.TestHelpers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 

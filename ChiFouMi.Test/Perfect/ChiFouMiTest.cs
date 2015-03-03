@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using ChiFouMi.Perfect;
+    using ChiFouMi.Test.TestHelpers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 

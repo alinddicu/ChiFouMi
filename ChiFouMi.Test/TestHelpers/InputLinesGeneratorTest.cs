@@ -1,4 +1,4 @@
-﻿namespace ChiFouMi.Test
+﻿namespace ChiFouMi.Test.TestHelpers
 {
     using System;
     using System.Linq;
