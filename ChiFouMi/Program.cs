@@ -5,8 +5,10 @@
 
     internal static class Program
     {
-        private static readonly IChiFouMi ChiFouMi = new HorribleChiFouMi(new HorribleExternalDependecies());
-        //private static readonly IChiFouMi ChiFouMi = new ChiFouMi(new HorribleExternalDependecies(), new DisplayChoixCoupGenerator());
+        private static readonly HorribleExternalDependecies HorribleExternalDependecies = new HorribleExternalDependecies();
+
+        private static readonly IChiFouMi ChiFouMi = new HorribleChiFouMi(HorribleExternalDependecies);
+        //private static readonly IChiFouMi ChiFouMi = new ChiFouMiFactory().Create(HorribleExternalDependecies);
 
         private static void Main(string[] args)
         {

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Perfect\ChiFouMiFactory.cs" />
     <Compile Include="Perfect\CoupType.cs" />
     <Compile Include="Horrible\HorribleChiFouMi.cs" />
     <Compile Include="Horrible\HorribleExternalDependecies.cs" />

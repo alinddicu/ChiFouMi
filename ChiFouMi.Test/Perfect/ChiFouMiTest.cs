@@ -25,7 +25,7 @@
                 "exit"
             };
             var dependencies = new TestExternalDependencies(inputLines, 1);
-            _perfectChiFouMi = new ChiFouMi(dependencies, new DisplayChoixCoupGenerator(), new InputToCoupTypeConverter());
+            _perfectChiFouMi = new ChiFouMiFactory().Create(dependencies);
 
             _perfectChiFouMi.Play(new[] { Environment.NewLine });
 
