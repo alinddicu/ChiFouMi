@@ -6,7 +6,9 @@
     public class PerfectChiFouMi : IChiFouMi
     {
         private const string ExitPhrase = "exit";
-        private const string TextIntro = "Veuillez choisir un signe:";
+        private const string ChoisirCoupText = "Veuillez choisir un signe:";
+        private const string BienvenueText = "Bienvenue dans mon chifumi, ici c'est un appli de ROXXXXXXXXXXXXXXXOOR!";
+        private const string EntreeOuExitText = "Taper sur la touche entrée pour commencer une partie, ou 'exit' pour quitter.";
 
         private int _playerChoice;
         private int _computerChoice;
@@ -35,13 +37,11 @@
                 }
             }
 
-            _dependencies.WriteLine("Bienvenue dans mon chifumi," +
-                              " ici c'est un appli de ROXXXXXXXXXXXXXXXOOR!");
-            _dependencies.WriteLine("Taper sur la touche entrée pour commencer une partie," +
-                              " ou 'exit' pour quitter.");
+            _dependencies.WriteLine(BienvenueText);
+            _dependencies.WriteLine(EntreeOuExitText);
             while (!Initialize())
             {
-                _dependencies.WriteLine(TextIntro);
+                _dependencies.WriteLine(ChoisirCoupText);
                 for (var idChoix = 0; idChoix < t.Count; idChoix++)
                 {
                     Display(idChoix);
