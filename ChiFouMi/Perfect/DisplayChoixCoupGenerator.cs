@@ -1,18 +1,16 @@
 ﻿namespace ChiFouMi.Perfect
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
+    using Variants.Common;
 
     public class DisplayChoixCoupGenerator
     {
         private const string ChoixCoupLineFormat = "{0}- {1}";
 
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Get(CommonVariantMode commonMode)
         {
-            string line = string.Empty;
-            foreach (var coup in CoupTypeExtensions.GetCoupsElligibles())
+            foreach (var coup in CoupTypeExtensions.GetCoupsElligibles(commonMode))
             {
                 yield return string.Format(CultureInfo.InvariantCulture, ChoixCoupLineFormat, (int)coup, coup);
             }

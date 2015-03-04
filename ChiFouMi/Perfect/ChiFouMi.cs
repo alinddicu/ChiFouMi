@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Variants;
+    using Variants.Common;
 
     public class ChiFouMi : IChiFouMi
     {
@@ -68,7 +69,7 @@
 
         private void DisplayChoixCoup()
         {
-            foreach (var choixCoup in _displayChoixCoup.Get())
+            foreach (var choixCoup in _displayChoixCoup.Get(CommonVariantMode.Simple))
             {
                 _systemDependencies.WriteLine(choixCoup);
             }

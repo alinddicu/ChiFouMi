@@ -18,17 +18,32 @@
         }
 
         [TestMethod]
-        public void WhenCreateThenReturnExpectedRules()
+        public void GivenSimpleModeWhenCreateThenReturnExpectedRules()
         {
-            var rules = _factory.Create().ToList();
+            var rules = _factory.Create(CommonVariantMode.Simple).ToList();
 
             Check.That(rules).HasSize(9);
             Check.That(rules.Where(r => !string.IsNullOrEmpty(r.OverridenAnnouncement))).HasSize(2);
 
-            foreach (var coup in CoupTypeExtensions.GetCoupsElligibles())
+            foreach (var coup in CoupTypeExtensions.GetCoupsElligibles(CommonVariantMode.Simple))
             {
                 Check.That(rules.Count(rule => rule.PlayerCoup == coup)).IsEqualTo(3);
                 Check.That(rules.Count(rule => rule.ComputerCoup == coup)).IsEqualTo(3);
+            }
+        }
+
+        [TestMethod]
+        public void GivenExtendedModeWhenCreateThenReturnExpectedRules()
+        {
+            var rules = _factory.Create(CommonVariantMode.Extended).ToList();
+
+            Check.That(rules).HasSize(25);
+            Check.That(rules.Where(r => !string.IsNullOrEmpty(r.OverridenAnnouncement))).HasSize(2);
+
+            foreach (var coup in CoupTypeExtensions.GetCoupsElligibles(CommonVariantMode.Extended))
+            {
+                Check.That(rules.Count(rule => rule.PlayerCoup == coup)).IsEqualTo(5);
+                Check.That(rules.Count(rule => rule.ComputerCoup == coup)).IsEqualTo(5);
             }
         }
     }

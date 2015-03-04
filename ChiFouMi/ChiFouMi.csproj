@@ -53,6 +53,7 @@
     <Compile Include="Perfect\PlayerTurnResult.cs" />
     <Compile Include="Perfect\TurnResult.cs" />
     <Compile Include="Perfect\Variants\ChiFouMiVariantsFactory.cs" />
+    <Compile Include="Perfect\Variants\Common\CommonVariantMode.cs" />
     <Compile Include="Perfect\Variants\Common\CommonVariant.cs" />
     <Compile Include="Perfect\Variants\Common\CommonVariantReferee.cs" />
     <Compile Include="Perfect\Variants\Common\CommonVariantRule.cs" />

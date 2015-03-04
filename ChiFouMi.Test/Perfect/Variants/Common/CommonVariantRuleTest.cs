@@ -11,7 +11,7 @@
         [TestMethod]
         public void GivenOverridenAnnouncementWhenToAnnouncementThenReturnOverridenAnnouncement()
         {
-            var overridenAnnouncement = "Yo!";
+            const string overridenAnnouncement = "Yo!";
             var rule = new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Perdu, overridenAnnouncement);
 
             Check.That(rule.ToAnnouncement()).IsEqualTo(overridenAnnouncement);

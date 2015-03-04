@@ -8,7 +8,7 @@
 
         public CommonVariantReferee(ICommonVariantRulesFactory commonVariantRulesFactory)
         {
-            _rules = commonVariantRulesFactory.Create().ToArray();
+            _rules = commonVariantRulesFactory.Create(CommonVariantMode.Simple).ToArray();
         }
 
         public TurnDecision Decide(CoupType playerCoup, CoupType computerCoup)

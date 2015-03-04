@@ -3,13 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Variants.Common;
 
     public enum CoupType
     {
         None = 0,
         Pierre = 1,
         Feuille = 2,
-        Ciseaux = 3
+        Ciseaux = 3,
+        Lezard = 4,
+        Spock = 5
     }
 
     public static class CoupTypeExtensions
@@ -19,9 +22,17 @@
             return coup != CoupType.None;
         }
 
-        public static IEnumerable<CoupType> GetCoupsElligibles()
+        public static IEnumerable<CoupType> GetCoupsElligibles(CommonVariantMode commonMode)
         {
-            return Enum.GetValues(typeof(CoupType)).OfType<CoupType>().ToList().Where(o => o.IsCoupElligible());
+            yield return CoupType.Pierre;
+            yield return CoupType.Feuille;
+            yield return CoupType.Ciseaux;
+
+            if (commonMode == CommonVariantMode.Extended)
+            {
+                yield return CoupType.Lezard;
+                yield return CoupType.Spock;
+            }
         }
     }
 }
