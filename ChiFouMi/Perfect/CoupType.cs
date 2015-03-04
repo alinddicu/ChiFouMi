@@ -7,4 +7,12 @@
         Feuille = 2,
         Ciseaux = 3
     }
+
+    public static class CoupTypeExtensions
+    {
+        public static bool IsCoupElligible(this CoupType coup)
+        {
+            return coup != CoupType.None;
+        }
+    }
 }
