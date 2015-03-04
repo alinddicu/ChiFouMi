@@ -37,7 +37,7 @@
         {
             var roxorLine = string.Format(CultureInfo.InvariantCulture, RoxorContreCoupText, computerChoice);
             _dependencies.WriteLine(roxorLine);
-            _dependencies.WriteLine("Gagne!");
+            _dependencies.WriteLine(PlayerTurnResult.Gagne.Announce());
         }
     }
 }
