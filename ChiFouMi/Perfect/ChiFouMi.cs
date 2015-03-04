@@ -42,7 +42,7 @@
                 DisplayChoixCoup();
 
                 var playerChoice = _inputToCoupTypeConverter.Convert(_systemDependencies.ReadLine());
-                if (chosenVariant.PlayTurn(playerChoice) == TurnResult.Exit)
+                if (chosenVariant.PlayTurn(playerChoice) == TurnNextAction.Exit)
                 {
                     break;
                 }
@@ -53,7 +53,7 @@
         {
             var variantType = ConvertToVariantType(userInputArguments);
             return _allVariants.First(v => v.CanPlay(variantType));
-        }
+            }
 
         private void SetMessageAccueil()
         {

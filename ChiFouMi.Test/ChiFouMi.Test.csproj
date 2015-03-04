@@ -54,8 +54,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ChiFouMiHorribleVsPerfectTest.cs" />
+    <Compile Include="Perfect\CoupTypeExtensionsTest.cs" />
     <Compile Include="Perfect\InputToCoupTypeConverterTest.cs" />
     <Compile Include="Perfect\Variants\ChiFouMiVariantsFactoryTest.cs" />
+    <Compile Include="Perfect\Variants\Common\CommonVariantRefereeTest.cs" />
+    <Compile Include="Perfect\Variants\Common\CommonVariantRulesFactoryTest.cs" />
+    <Compile Include="Perfect\Variants\Common\CommonVariantRuleTest.cs" />
     <Compile Include="Perfect\Variants\VariantTypeConverterTest.cs" />
     <Compile Include="TestHelpers\InputLinesGenerator.cs" />
     <Compile Include="TestHelpers\InputLinesGeneratorTest.cs" />

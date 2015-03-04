@@ -4,6 +4,6 @@
     {
         bool CanPlay(VariantType variantType);
 
-        TurnResult PlayTurn(CoupType playerChoice);
+        TurnNextAction PlayTurn(CoupType playerCoup);
     }
 }

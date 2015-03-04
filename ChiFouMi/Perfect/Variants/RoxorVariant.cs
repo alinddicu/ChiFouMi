@@ -1,7 +1,10 @@
 ﻿namespace ChiFouMi.Perfect.Variants
 {
+    using System.Globalization;
+
     public class RoxorVariant : IChiFouMiVariant
     {
+        private const string RoxorContreCoupText = "Tu es un roxor contre {0}";
         private readonly ISystemDependencies _systemDependencies;
         private readonly InputToCoupTypeConverter _inputToCoupTypeConverter;
 
@@ -18,26 +21,22 @@
             return variantType == VariantType.Roxor;
         }
 
-        public TurnResult PlayTurn(CoupType playerChoice)
+        public TurnNextAction PlayTurn(CoupType playerChoice)
         {
             var computerChoice = _inputToCoupTypeConverter.Convert(_systemDependencies.GetNextRandomBetween1And3());
-            switch (computerChoice)
+            if (computerChoice.IsCoupElligible())
             {
-                case CoupType.Pierre:
-                    _systemDependencies.WriteLine("Tu es un roxor contre Pierre");
-                    _systemDependencies.WriteLine("Gagne!");
-                    break;
-                case CoupType.Feuille:
-                    _systemDependencies.WriteLine("Tu es un roxor contre Feuille");
-                    _systemDependencies.WriteLine("Gagne!");
-                    break;
-                case CoupType.Ciseaux:
-                    _systemDependencies.WriteLine("Tu es un roxor contre Ciseaux");
-                    _systemDependencies.WriteLine("Gagne!");
-                    break;
+                WriteLinesOnGagne(computerChoice);
             }
 
-            return TurnResult.Continue;
+            return TurnNextAction.Continue;
+            }
+
+        private void WriteLinesOnGagne(CoupType computerChoice)
+        {
+            var roxorLine = string.Format(CultureInfo.InvariantCulture, RoxorContreCoupText, computerChoice);
+            _systemDependencies.WriteLine(roxorLine);
+            _systemDependencies.WriteLine(PlayerTurnResult.Gagne.Announce());
         }
     }
 }

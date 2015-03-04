@@ -2,7 +2,8 @@
 {
     public enum TurnResult
     {
-        Exit,
-        Continue
+        Gagne,
+        Perdu,
+        Egalite
     }
 }
