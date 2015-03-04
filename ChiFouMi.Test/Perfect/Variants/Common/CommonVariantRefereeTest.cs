@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using ChiFouMi.Perfect;
+    using ChiFouMi.Perfect.Variants;
     using ChiFouMi.Perfect.Variants.Common;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
@@ -37,7 +38,7 @@
 
         private class CommonVariantRulesFactoryFake : ICommonVariantRulesFactory
         {
-            public IEnumerable<CommonVariantRule> Create(CommonVariantMode commonMode)
+            public IEnumerable<CommonVariantRule> Create(VariantMode mode)
             {
                 return new[] { new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Perdu) };
             }

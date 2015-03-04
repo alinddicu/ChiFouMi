@@ -69,7 +69,7 @@
 
         private void DisplayChoixCoup()
         {
-            foreach (var choixCoup in _displayChoixCoup.Get(CommonVariantMode.Simple))
+            foreach (var choixCoup in _displayChoixCoup.Get(VariantMode.Simple))
             {
                 _systemDependencies.WriteLine(choixCoup);
             }
