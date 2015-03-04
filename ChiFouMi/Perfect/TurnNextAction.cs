@@ -1,6 +1,6 @@
 ﻿namespace ChiFouMi.Perfect
 {
-    public enum TurnResult
+    public enum TurnNextAction
     {
         Exit,
         Continue

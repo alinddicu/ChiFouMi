@@ -18,11 +18,23 @@
             return variantType == VariantType.Common;
         }
 
-        public TurnResult PlayTurn(CoupType playerChoice)
+        public TurnNextAction PlayTurn(CoupType playerChoice)
         {
             var computerChoice = _inputToCoupTypeConverter.Convert(_dependencies.GetNextRandomBetween1And3());
 
-            if ((int)playerChoice - 1 == (int)computerChoice % 2)
+            if (playerChoice == CoupType.Feuille && computerChoice == CoupType.Ciseaux)
+            {
+                // emmerde
+                _dependencies.WriteLine("Pierre contre Feuille!");
+                _dependencies.WriteLine("Perdu!");
+            }
+            else if (playerChoice == CoupType.Feuille && computerChoice == CoupType.Pierre)
+            {
+                // emmerde
+                _dependencies.WriteLine("Pierre contre Feuille!");
+                _dependencies.WriteLine("Perdu!");
+            }
+            else if (playerChoice == CoupType.Pierre && computerChoice == CoupType.Feuille)
             {
                 _dependencies.WriteLine("Pierre contre Feuille!");
                 _dependencies.WriteLine("Perdu!");
@@ -59,10 +71,10 @@
             }
             else
             {
-                return TurnResult.Exit;
+                return TurnNextAction.Exit;
             }
 
-            return TurnResult.Continue;
+            return TurnNextAction.Continue;
         }
     }
 }

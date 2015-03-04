@@ -54,7 +54,7 @@
     <Compile Include="Perfect\Variants\CommonVariant.cs" />
     <Compile Include="Perfect\Variants\IChiFouMiVariant.cs" />
     <Compile Include="Perfect\Variants\RoxorVariant.cs" />
-    <Compile Include="Perfect\TurnResult.cs" />
+    <Compile Include="Perfect\TurnNextAction.cs" />
     <Compile Include="Perfect\Variants\VariantType.cs" />
     <Compile Include="Perfect\Variants\VariantTypeConverter.cs" />
     <Compile Include="Program.cs" />

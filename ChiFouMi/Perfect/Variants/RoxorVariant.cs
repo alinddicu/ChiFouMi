@@ -22,7 +22,7 @@
             return variantType == VariantType.Roxor;
         }
 
-        public TurnResult PlayTurn(CoupType playerChoice)
+        public TurnNextAction PlayTurn(CoupType playerChoice)
         {
             var computerChoice = _inputToCoupTypeConverter.Convert(_dependencies.GetNextRandomBetween1And3());
             if (computerChoice.IsCoupElligible())
@@ -30,7 +30,7 @@
                 WriteLinesOnGagne(computerChoice);
             }
 
-            return TurnResult.Continue;
+            return TurnNextAction.Continue;
         }
 
         private void WriteLinesOnGagne(CoupType computerChoice)

@@ -46,7 +46,7 @@
                 var playerChoice = _inputToCoupTypeConverter.Convert(_dependencies.ReadLine());
                 var turnResult = variant.PlayTurn(playerChoice);
 
-                if (turnResult == TurnResult.Exit)
+                if (turnResult == TurnNextAction.Exit)
                 {
                     break;
                 }
