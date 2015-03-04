@@ -18,53 +18,53 @@
             return variantType == VariantType.Common;
         }
 
-        public TurnNextAction PlayTurn(CoupType playerChoice)
+        public TurnNextAction PlayTurn(CoupType playerCoup)
         {
-            var computerChoice = _inputToCoupTypeConverter.Convert(_dependencies.GetNextRandomBetween1And3());
+            var computerCoup = _inputToCoupTypeConverter.Convert(_dependencies.GetNextRandomBetween1And3());
 
-            if (playerChoice == CoupType.Feuille && computerChoice == CoupType.Ciseaux)
+            if (playerCoup == CoupType.Feuille && computerCoup == CoupType.Ciseaux)
             {
                 // emmerde
-                _dependencies.WriteLine("Pierre contre Feuille!");
+                _dependencies.WriteLine("Pierre contre Feuille!"); // faux
                 _dependencies.WriteLine("Perdu!");
             }
-            else if (playerChoice == CoupType.Feuille && computerChoice == CoupType.Pierre)
+            else if (playerCoup == CoupType.Feuille && computerCoup == CoupType.Pierre)
             {
                 // emmerde
-                _dependencies.WriteLine("Pierre contre Feuille!");
-                _dependencies.WriteLine("Perdu!");
+                _dependencies.WriteLine("Pierre contre Feuille!"); // faux
+                _dependencies.WriteLine("Perdu!"); // faux
             }
-            else if (playerChoice == CoupType.Pierre && computerChoice == CoupType.Feuille)
+            else if (playerCoup == CoupType.Pierre && computerCoup == CoupType.Feuille)
             {
                 _dependencies.WriteLine("Pierre contre Feuille!");
                 _dependencies.WriteLine("Perdu!");
             }
-            else if (playerChoice == CoupType.Pierre && computerChoice == CoupType.Ciseaux)
+            else if (playerCoup == CoupType.Pierre && computerCoup == CoupType.Ciseaux)
             {
                 _dependencies.WriteLine("Pierre contre Ciseaux!");
                 _dependencies.WriteLine("Gagne!");
             }
-            else if (playerChoice == CoupType.Ciseaux && computerChoice == CoupType.Pierre)
+            else if (playerCoup == CoupType.Ciseaux && computerCoup == CoupType.Pierre)
             {
                 _dependencies.WriteLine("Ciseaux contre Pierre!");
                 _dependencies.WriteLine("Perdu!");
             }
-            else if (playerChoice == CoupType.Ciseaux && computerChoice == CoupType.Feuille)
+            else if (playerCoup == CoupType.Ciseaux && computerCoup == CoupType.Feuille)
             {
                 _dependencies.WriteLine("Ciseaux contre Feuille!");
                 _dependencies.WriteLine("Gagne!");
             }
-            else if (playerChoice == CoupType.Pierre && computerChoice == CoupType.Pierre)
+            else if (playerCoup == CoupType.Pierre && computerCoup == CoupType.Pierre)
             {
                 _dependencies.WriteLine("Pierre contre Pierre!");
                 _dependencies.WriteLine("Egalite!");
             }
-            else if (playerChoice == CoupType.Feuille && computerChoice == CoupType.Feuille)
+            else if (playerCoup == CoupType.Feuille && computerCoup == CoupType.Feuille)
             {
                 _dependencies.WriteLine("Feuille contre Feuille!");
                 _dependencies.WriteLine("Egalite!");
             }
-            else if (playerChoice == CoupType.Ciseaux && computerChoice == CoupType.Ciseaux)
+            else if (playerCoup == CoupType.Ciseaux && computerCoup == CoupType.Ciseaux)
             {
                 _dependencies.WriteLine("Ciseaux contre Ciseaux!");
                 _dependencies.WriteLine("Egalite!");
