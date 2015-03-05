@@ -4,9 +4,9 @@
 
     public class CommonVariantRulesFactory : ICommonVariantRulesFactory
     {
-        private readonly CommonVariantMode _mode;
+        private readonly VariantMode _mode;
 
-        public CommonVariantRulesFactory(CommonVariantMode mode)
+        public CommonVariantRulesFactory(VariantMode mode)
         {
             _mode = mode;
         }
@@ -25,7 +25,7 @@
             yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Feuille, PlayerTurnResult.Gagne);
             yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Ciseaux, PlayerTurnResult.Egalite);
 
-            if (_mode != CommonVariantMode.Extended)
+            if (_mode != VariantMode.Extended)
             {
                 yield break;
             }

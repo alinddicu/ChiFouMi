@@ -22,13 +22,13 @@
             return coup != CoupType.None;
         }
 
-        public static IEnumerable<CoupType> GetCoupsElligibles(CommonVariantMode commonMode)
+        public static IEnumerable<CoupType> GetCoupsElligibles(VariantMode commonMode)
         {
             yield return CoupType.Pierre;
             yield return CoupType.Feuille;
             yield return CoupType.Ciseaux;
 
-            if (commonMode == CommonVariantMode.Extended)
+            if (commonMode == VariantMode.Extended)
             {
                 yield return CoupType.Lezard;
                 yield return CoupType.Spock;

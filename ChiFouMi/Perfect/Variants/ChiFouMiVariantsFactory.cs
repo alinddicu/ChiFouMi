@@ -5,11 +5,11 @@
 
     public class ChiFouMiVariantsFactory
     {
-        private readonly CommonVariantMode _mode;
+        private readonly VariantMode _mode;
         private readonly ISystemDependencies _systemDependencies;
 
         public ChiFouMiVariantsFactory(
-            CommonVariantMode mode,
+            VariantMode mode,
             ISystemDependencies systemDependencies)
         {
             _mode = mode;

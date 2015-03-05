@@ -6,9 +6,9 @@
     public class ChiFouMiFactory
     {
         private ISystemDependencies _systemDependencies;
-        private CommonVariantMode _mode;
+        private VariantMode _mode;
 
-        public ChiFouMiFactory(ISystemDependencies systemDependencies, CommonVariantMode mode)
+        public ChiFouMiFactory(ISystemDependencies systemDependencies, VariantMode mode)
         {
             _systemDependencies = systemDependencies;
             _mode = mode;
