@@ -17,10 +17,10 @@
         private readonly InputToCoupTypeConverter _inputToCoupTypeConverter;
         private readonly VariantTypeConverter _variantTypeConverter;
         private readonly IChiFouMiVariant[] _allVariants;
-        private readonly VariantMode _mode;
+        private readonly ChiFuMiMode _mode;
 
         public ChiFouMi(
-            VariantMode mode,
+            ChiFuMiMode mode,
             ISystemDependencies systemDependencies,
             DisplayChoixCoupGenerator displayChoixCoup,
             InputToCoupTypeConverter inputToCoupTypeConverter,

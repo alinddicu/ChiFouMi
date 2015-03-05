@@ -39,7 +39,7 @@
                 var horribleDependencies = new TestExternalDependencies(inputLines, seed);
                 var perfectDependencies = new TestExternalDependencies(inputLines, seed);
                 _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
-                _perfectChiFouMi = new ChiFouMiFactory(perfectDependencies, VariantMode.Simple).Create();
+                _perfectChiFouMi = new ChiFouMiFactory(perfectDependencies, ChiFuMiMode.Base).Create();
 
                 var roxor = new[] { mode };
                 _horribleChiFouMi.Play(roxor);
