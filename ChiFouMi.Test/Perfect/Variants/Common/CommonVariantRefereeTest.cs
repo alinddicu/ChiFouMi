@@ -37,7 +37,7 @@
 
         private class CommonVariantRulesFactoryFake : ICommonVariantRulesFactory
         {
-            public IEnumerable<CommonVariantRule> Create(CommonVariantMode commonMode)
+            public IEnumerable<CommonVariantRule> Create()
             {
                 return new[] { new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Perdu) };
             }

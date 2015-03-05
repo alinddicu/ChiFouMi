@@ -10,18 +10,11 @@
     [TestClass]
     public class ChiFouMiVariantsFactoryTest
     {
-        private ChiFouMiVariantsFactory _factory;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            _factory = new ChiFouMiVariantsFactory();
-        }
-
         [TestMethod]
-        public void WhenCreateThenReturnAllDerivedTypesOfIChiFouMiVariant()
+        public void GivenSimpleVariantWhenCreateThenReturnAllDerivedTypesOfIChiFouMiVariant()
         {
-            var creations = _factory.Create(new TestExternalDependencies(Enumerable.Empty<string>(), 1));
+            var systemDependencies = new TestExternalDependencies(Enumerable.Empty<string>(), 1);
+            var creations = new ChiFouMiVariantsFactory(CommonVariantMode.Simple, systemDependencies).Create();
             var types = creations.Select(c => c.GetType()).ToArray();
 
             Check.That(types).HasSize(2);

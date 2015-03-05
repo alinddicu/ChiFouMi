@@ -4,6 +4,7 @@
     using System.Linq;
     using ChiFouMi.Horrible;
     using ChiFouMi.Perfect;
+    using ChiFouMi.Perfect.Variants.Common;
     using ChiFouMi.Test.TestHelpers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
@@ -38,7 +39,7 @@
                 var horribleDependencies = new TestExternalDependencies(inputLines, seed);
                 var perfectDependencies = new TestExternalDependencies(inputLines, seed);
                 _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
-                _perfectChiFouMi = new ChiFouMiFactory().Create(perfectDependencies);
+                _perfectChiFouMi = new ChiFouMiFactory(perfectDependencies, CommonVariantMode.Simple).Create();
 
                 var roxor = new[] { mode };
                 _horribleChiFouMi.Play(roxor);

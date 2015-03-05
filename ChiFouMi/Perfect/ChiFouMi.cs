@@ -11,7 +11,7 @@
         private const string ChoisirCoupText = "Veuillez choisir un signe:";
         private const string BienvenueText = "Bienvenue dans mon chifumi, ici c'est un appli de ROXXXXXXXXXXXXXXXOOR!";
         private const string EntreeOuExitText = "Taper sur la touche entrée pour commencer une partie, ou 'exit' pour quitter.";
-        
+
         private readonly ISystemDependencies _systemDependencies;
         private readonly DisplayChoixCoupGenerator _displayChoixCoup;
         private readonly InputToCoupTypeConverter _inputToCoupTypeConverter;
@@ -29,7 +29,7 @@
             _displayChoixCoup = displayChoixCoup;
             _inputToCoupTypeConverter = inputToCoupTypeConverter;
             _variantTypeConverter = variantTypeConverter;
-            _allVariants = chiFouMiVariantsFactory.Create(_systemDependencies).ToArray();
+            _allVariants = chiFouMiVariantsFactory.Create().ToArray();
         }
 
         public void Play(string[] userInputArguments)
@@ -54,7 +54,7 @@
         {
             var variantType = ConvertToVariantType(userInputArguments);
             return _allVariants.First(v => v.CanPlay(variantType));
-            }
+        }
 
         private void SetMessageAccueil()
         {

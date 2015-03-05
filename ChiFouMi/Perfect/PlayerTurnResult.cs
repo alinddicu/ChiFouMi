@@ -11,7 +11,7 @@
     {
         public static string Announce(this PlayerTurnResult turnResult)
         {
-            return turnResult.ToString() + "!";
+            return turnResult + "!";
         }
     }
 }

@@ -1,17 +1,27 @@
 ﻿namespace ChiFouMi.Perfect
 {
-    using Variants;
+    using Perfect.Variants;
+    using Variants.Common;
 
     public class ChiFouMiFactory
     {
-        public ChiFouMi Create(ISystemDependencies dependencies)
+        private ISystemDependencies _systemDependencies;
+        private CommonVariantMode _mode;
+
+        public ChiFouMiFactory(ISystemDependencies systemDependencies, CommonVariantMode mode)
+        {
+            _systemDependencies = systemDependencies;
+            _mode = mode;
+        }
+
+        public ChiFouMi Create()
         {
             return new ChiFouMi(
-                dependencies, 
-                new DisplayChoixCoupGenerator(), 
+                _systemDependencies,
+                new DisplayChoixCoupGenerator(),
                 new InputToCoupTypeConverter(),
-                new VariantTypeConverter(),
-                new ChiFouMiVariantsFactory());
+                new Perfect.Variants.VariantTypeConverter(),
+                new Perfect.Variants.ChiFouMiVariantsFactory(_mode, _systemDependencies));
         }
     }
 }
