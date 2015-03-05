@@ -19,7 +19,7 @@
         [TestMethod]
         public void GivenSimpleModeWhenGetThenReturnLabelsForPierreFeuilleCiseaux()
         {
-            var result = _displayer.Generate(VariantMode.Simple);
+            var result = _displayer.Generate(ChiFouMiMode.Base);
 
             Check.That(result).ContainsExactly("1- Pierre", "2- Feuille", "3- Ciseaux");
         }
@@ -27,7 +27,7 @@
         [TestMethod]
         public void GivenExtendedModeWhenGetThenReturnLabelsForAllEnumMembersExceptNone()
         {
-            var result = _displayer.Generate(VariantMode.Extended);
+            var result = _displayer.Generate(ChiFouMiMode.Extended);
 
             Check.That(result).ContainsExactly(
                 "1- Pierre", "2- Feuille", "3- Ciseaux", "4- Lezard", "5- Spock");

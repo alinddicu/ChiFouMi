@@ -27,7 +27,7 @@
                 "exit"
             };
             var dependencies = new TestExternalDependencies(inputLines, 1);
-            _perfectChiFouMi = new ChiFouMiFactory(dependencies, VariantMode.Simple).Create();
+            _perfectChiFouMi = new ChiFouMiFactory(dependencies, ChiFouMiMode.Base).Create();
 
             _perfectChiFouMi.Play(Enumerable.Empty<string>().ToArray());
 

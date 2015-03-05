@@ -20,13 +20,13 @@
             return coup != CoupType.None;
         }
 
-        public static IEnumerable<CoupType> GetCoupsElligibles(VariantMode commonMode)
+        public static IEnumerable<CoupType> GetCoupsElligibles(ChiFouMiMode commonMode)
         {
             yield return CoupType.Pierre;
             yield return CoupType.Feuille;
             yield return CoupType.Ciseaux;
 
-            if (commonMode == VariantMode.Extended)
+            if (commonMode == ChiFouMiMode.Extended)
             {
                 yield return CoupType.Lezard;
                 yield return CoupType.Spock;

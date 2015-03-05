@@ -8,7 +8,7 @@
     {
         private const string ChoixCoupLineFormat = "{0}- {1}";
 
-        public IEnumerable<string> Generate(VariantMode commonMode)
+        public IEnumerable<string> Generate(ChiFouMiMode commonMode)
         {
             foreach (var coup in CoupTypeExtensions.GetCoupsElligibles(commonMode))
             {
