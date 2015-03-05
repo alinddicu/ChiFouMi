@@ -1,7 +1,7 @@
 ﻿namespace ChiFouMi.Perfect
 {
     using System.Collections.Generic;
-    using Variants;
+    using Perfect.Variants;
 
     public enum CoupType
     {
@@ -20,19 +20,17 @@
             return coup != CoupType.None;
         }
 
-        public static IEnumerable<CoupType> GetCoupsElligibles(VariantMode mode)
+        public static IEnumerable<CoupType> GetCoupsElligibles(VariantMode commonMode)
         {
             yield return CoupType.Pierre;
             yield return CoupType.Feuille;
             yield return CoupType.Ciseaux;
 
-            if (mode != VariantMode.Extended)
+            if (commonMode == VariantMode.Extended)
             {
-                yield break;
+                yield return CoupType.Lezard;
+                yield return CoupType.Spock;
             }
-
-            yield return CoupType.Lezard;
-            yield return CoupType.Spock;
         }
     }
 }

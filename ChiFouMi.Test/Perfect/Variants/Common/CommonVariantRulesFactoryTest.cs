@@ -10,18 +10,10 @@
     [TestClass]
     public class CommonVariantRulesFactoryTest
     {
-        private CommonVariantRulesFactory _factory;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            _factory = new CommonVariantRulesFactory();
-        }
-
         [TestMethod]
         public void GivenSimpleModeWhenCreateThenReturnExpectedRules()
         {
-            var rules = _factory.Create(VariantMode.Simple).ToList();
+            var rules = new CommonVariantRulesFactory(VariantMode.Simple).Create().ToList();
 
             Check.That(rules).HasSize(9);
             Check.That(rules.Where(r => !string.IsNullOrEmpty(r.OverridenAnnouncement))).HasSize(2);
@@ -36,7 +28,7 @@
         [TestMethod]
         public void GivenExtendedModeWhenCreateThenReturnExpectedRules()
         {
-            var rules = _factory.Create(VariantMode.Extended).ToList();
+            var rules = new CommonVariantRulesFactory(VariantMode.Extended).Create().ToList();
 
             Check.That(rules).HasSize(25);
             Check.That(rules.Where(r => !string.IsNullOrEmpty(r.OverridenAnnouncement))).HasSize(2);

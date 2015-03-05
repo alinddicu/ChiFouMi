@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using ChiFouMi.Perfect;
+    using ChiFouMi.Perfect.Variants;
     using ChiFouMi.Test.TestHelpers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
@@ -26,7 +27,7 @@
                 "exit"
             };
             var dependencies = new TestExternalDependencies(inputLines, 1);
-            _perfectChiFouMi = new ChiFouMiFactory().Create(dependencies);
+            _perfectChiFouMi = new ChiFouMiFactory(dependencies, VariantMode.Simple).Create();
 
             _perfectChiFouMi.Play(Enumerable.Empty<string>().ToArray());
 

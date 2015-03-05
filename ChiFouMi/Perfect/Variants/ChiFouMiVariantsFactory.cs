@@ -5,14 +5,25 @@
 
     public class ChiFouMiVariantsFactory
     {
-        public IEnumerable<IChiFouMiVariant> Create(ISystemDependencies externalDependencies)
+        private readonly VariantMode _mode;
+        private readonly ISystemDependencies _systemDependencies;
+
+        public ChiFouMiVariantsFactory(
+            VariantMode mode,
+            ISystemDependencies systemDependencies)
+        {
+            _mode = mode;
+            _systemDependencies = systemDependencies;
+        }
+
+        public IEnumerable<IChiFouMiVariant> Create()
         {
             yield return new CommonVariant(
-                externalDependencies,
+                _systemDependencies,
                 new InputToCoupTypeConverter(),
                 new CommonVariantReferee(
-                    new CommonVariantRulesFactory()));
-            yield return new RoxorVariant(externalDependencies, new InputToCoupTypeConverter());
+                    new CommonVariantRulesFactory(_mode)));
+            yield return new RoxorVariant(_systemDependencies, new InputToCoupTypeConverter());
         }
     }
 }

@@ -51,7 +51,6 @@
     <Compile Include="Perfect\ChiFouMi.cs" />
     <Compile Include="Perfect\InputToCoupTypeConverter.cs" />
     <Compile Include="Perfect\PlayerTurnResult.cs" />
-    <Compile Include="Perfect\TurnResult.cs" />
     <Compile Include="Perfect\Variants\ChiFouMiVariantsFactory.cs" />
     <Compile Include="Perfect\Variants\VariantMode.cs" />
     <Compile Include="Perfect\Variants\Common\CommonVariant.cs" />

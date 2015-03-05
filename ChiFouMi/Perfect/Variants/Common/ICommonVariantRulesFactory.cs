@@ -5,6 +5,6 @@
 
     public interface ICommonVariantRulesFactory
     {
-        IEnumerable<CommonVariantRule> Create(VariantMode mode);
+        IEnumerable<CommonVariantRule> Create();
     }
 }

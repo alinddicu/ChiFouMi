@@ -4,7 +4,14 @@
 
     public class CommonVariantRulesFactory : ICommonVariantRulesFactory
     {
-        public IEnumerable<CommonVariantRule> Create(VariantMode mode)
+        private readonly VariantMode _mode;
+
+        public CommonVariantRulesFactory(VariantMode mode)
+        {
+            _mode = mode;
+        }
+
+        public IEnumerable<CommonVariantRule> Create()
         {
             yield return new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Perdu);
             yield return new CommonVariantRule(CoupType.Pierre, CoupType.Ciseaux, PlayerTurnResult.Gagne);
@@ -18,18 +25,18 @@
             yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Feuille, PlayerTurnResult.Gagne);
             yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Ciseaux, PlayerTurnResult.Egalite);
 
-            if (mode != VariantMode.Extended)
+            if (_mode != VariantMode.Extended)
             {
                 yield break;
             }
 
-            foreach (var rule in YieldExtendedRules())
+            foreach (var rule in YieldExtendedModeRules())
             {
                 yield return rule;
             }
         }
 
-        private IEnumerable<CommonVariantRule> YieldExtendedRules()
+        private IEnumerable<CommonVariantRule> YieldExtendedModeRules()
         {
             yield return new CommonVariantRule(CoupType.Pierre, CoupType.Lezard, PlayerTurnResult.Gagne);
             yield return new CommonVariantRule(CoupType.Pierre, CoupType.Spock, PlayerTurnResult.Perdu);
