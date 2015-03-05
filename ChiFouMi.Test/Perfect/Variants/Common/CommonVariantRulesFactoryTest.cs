@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using ChiFouMi.Perfect;
+    using ChiFouMi.Perfect.Variants;
     using ChiFouMi.Perfect.Variants.Common;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;

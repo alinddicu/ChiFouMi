@@ -1,4 +1,4 @@
-﻿namespace ChiFouMi.Perfect.Variants.Common
+﻿namespace ChiFouMi.Perfect.Variants
 {
     public enum VariantMode
     {

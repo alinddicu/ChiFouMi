@@ -1,9 +1,7 @@
 ﻿namespace ChiFouMi.Perfect
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using Variants.Common;
+    using Perfect.Variants;
 
     public enum CoupType
     {

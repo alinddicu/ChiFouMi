@@ -1,7 +1,7 @@
 ﻿namespace ChiFouMi.Test.Perfect
 {
     using ChiFouMi.Perfect;
-    using ChiFouMi.Perfect.Variants.Common;
+    using ChiFouMi.Perfect.Variants;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 

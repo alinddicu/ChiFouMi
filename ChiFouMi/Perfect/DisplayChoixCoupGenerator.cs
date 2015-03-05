@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Globalization;
-    using Variants.Common;
+    using Perfect.Variants;
 
     public class DisplayChoixCoupGenerator
     {

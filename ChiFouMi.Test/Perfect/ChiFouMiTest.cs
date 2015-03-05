@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using ChiFouMi.Perfect;
-    using ChiFouMi.Perfect.Variants.Common;
+    using ChiFouMi.Perfect.Variants;
     using ChiFouMi.Test.TestHelpers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
