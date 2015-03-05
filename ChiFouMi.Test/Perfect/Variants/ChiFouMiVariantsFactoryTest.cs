@@ -14,8 +14,9 @@
         [TestMethod]
         public void GivenSimpleVariantWhenCreateThenReturnAllDerivedTypesOfIChiFouMiVariant()
         {
-            var systemDependencies = new TestExternalDependencies(Enumerable.Empty<string>(), 1);
-            var creations = new ChiFouMiVariantsFactory(ChiFouMiMode.Base, systemDependencies).Create();
+            const int generatorUpperLimit = 4;
+            var systemDependencies = new TestExternalDependencies(generatorUpperLimit, Enumerable.Empty<string>(), 1);
+            var creations = new ChiFouMiVariantsFactory(generatorUpperLimit, ChiFouMiMode.Base, systemDependencies).Create();
             var types = creations.Select(c => c.GetType()).ToArray();
 
             Check.That(types).HasSize(2);

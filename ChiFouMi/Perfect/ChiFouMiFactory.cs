@@ -1,15 +1,19 @@
 ﻿namespace ChiFouMi.Perfect
 {
-    using Perfect.Variants;
-    using Variants.Common;
+    using Variants;
 
     public class ChiFouMiFactory
     {
-        private ISystemDependencies _systemDependencies;
-        private ChiFouMiMode _mode;
+        private readonly ISystemDependencies _systemDependencies;
+        private readonly ChiFouMiMode _mode;
+        private readonly int _randomUpperLimit;
 
-        public ChiFouMiFactory(ISystemDependencies systemDependencies, ChiFouMiMode mode)
+        public ChiFouMiFactory(
+            int randomUpperLimit,
+            ISystemDependencies systemDependencies, 
+            ChiFouMiMode mode)
         {
+            _randomUpperLimit = randomUpperLimit;
             _systemDependencies = systemDependencies;
             _mode = mode;
         }
@@ -22,7 +26,7 @@
                 new DisplayChoixCoupGenerator(),
                 new InputToCoupTypeConverter(),
                 new VariantTypeConverter(),
-                new ChiFouMiVariantsFactory(_mode, _systemDependencies));
+                new ChiFouMiVariantsFactory(_randomUpperLimit, _mode, _systemDependencies));
         }
     }
 }

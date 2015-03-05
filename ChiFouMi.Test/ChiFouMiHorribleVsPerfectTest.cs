@@ -12,6 +12,8 @@
     [TestClass]
     public class ChiFouMiHorribleVsPerfectTest
     {
+        private const int UpperLimitRandomGenerator = 4;
+
         private readonly InputLinesGenerator _inputLinesGenerator = new InputLinesGenerator();
         private HorribleChiFouMi _horribleChiFouMi;
         private ChiFouMi _perfectChiFouMi;
@@ -36,10 +38,10 @@
         {
             for (var seed = 0; seed < 100; seed++)
             {
-                var horribleDependencies = new TestExternalDependencies(inputLines, seed);
-                var perfectDependencies = new TestExternalDependencies(inputLines, seed);
+                var horribleDependencies = new TestExternalDependencies(UpperLimitRandomGenerator, inputLines, seed);
+                var perfectDependencies = new TestExternalDependencies(UpperLimitRandomGenerator, inputLines, seed);
                 _horribleChiFouMi = new HorribleChiFouMi(horribleDependencies);
-                _perfectChiFouMi = new ChiFouMiFactory(perfectDependencies, ChiFouMiMode.Base).Create();
+                _perfectChiFouMi = new ChiFouMiFactory(UpperLimitRandomGenerator, perfectDependencies, ChiFouMiMode.Base).Create();
 
                 var roxor = new[] { mode };
                 _horribleChiFouMi.Play(roxor);

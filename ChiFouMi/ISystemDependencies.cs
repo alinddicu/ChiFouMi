@@ -6,6 +6,6 @@
 
         string ReadLine();
 
-        int GetNextRandomBetween1And3();
+        int GetRandomInt(int upperLimit);
     }
 }

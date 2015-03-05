@@ -2,15 +2,14 @@
 {
     using System.Collections.Generic;
     using System.Globalization;
-    using Perfect.Variants;
 
     public class DisplayChoixCoupGenerator
     {
         private const string ChoixCoupLineFormat = "{0}- {1}";
 
-        public IEnumerable<string> Generate(ChiFouMiMode commonMode)
+        public IEnumerable<string> Generate(ChiFouMiMode mode)
         {
-            foreach (var coup in CoupTypeExtensions.GetCoupsElligibles(commonMode))
+            foreach (var coup in CoupTypeExtensions.GetCoupsElligibles(mode))
             {
                 yield return string.Format(CultureInfo.InvariantCulture, ChoixCoupLineFormat, (int)coup, coup);
             }
