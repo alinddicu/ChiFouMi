@@ -12,7 +12,7 @@ namespace ChiFouMi.Perfect
                 return convertedValue;
             }
 
-            if (Enum.TryParse<CoupType>(input.ToString(), out convertedValue))
+            if (Enum.TryParse(input.ToString(), out convertedValue))
             {
                 return convertedValue;
             }

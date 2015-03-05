@@ -17,11 +17,12 @@
         public ChiFouMi Create()
         {
             return new ChiFouMi(
+                _mode,
                 _systemDependencies,
                 new DisplayChoixCoupGenerator(),
                 new InputToCoupTypeConverter(),
-                new Perfect.Variants.VariantTypeConverter(),
-                new Perfect.Variants.ChiFouMiVariantsFactory(_mode, _systemDependencies));
+                new VariantTypeConverter(),
+                new ChiFouMiVariantsFactory(_mode, _systemDependencies));
         }
     }
 }

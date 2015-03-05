@@ -17,14 +17,17 @@
         private readonly InputToCoupTypeConverter _inputToCoupTypeConverter;
         private readonly VariantTypeConverter _variantTypeConverter;
         private readonly IChiFouMiVariant[] _allVariants;
+        private readonly VariantMode _mode;
 
         public ChiFouMi(
+            VariantMode mode,
             ISystemDependencies systemDependencies,
             DisplayChoixCoupGenerator displayChoixCoup,
             InputToCoupTypeConverter inputToCoupTypeConverter,
             VariantTypeConverter variantTypeConverter,
             ChiFouMiVariantsFactory chiFouMiVariantsFactory)
         {
+            _mode = mode;
             _systemDependencies = systemDependencies;
             _displayChoixCoup = displayChoixCoup;
             _inputToCoupTypeConverter = inputToCoupTypeConverter;
@@ -69,7 +72,7 @@
 
         private void DisplayChoixCoup()
         {
-            foreach (var choixCoup in _displayChoixCoup.Generate(VariantMode.Simple))
+            foreach (var choixCoup in _displayChoixCoup.Generate(_mode))
             {
                 _systemDependencies.WriteLine(choixCoup);
             }
