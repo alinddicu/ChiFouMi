@@ -14,9 +14,9 @@
             return Console.ReadLine();
         }
 
-        public int GetNextRandomBetween1And3()
+        public int GetRandomInt(int upperLimit)
         {
-            return new Random(DateTime.Now.Millisecond).Next(1, 4);
+            return new Random(DateTime.Now.Millisecond).Next(1, upperLimit);
         }
     }
 }

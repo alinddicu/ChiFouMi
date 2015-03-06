@@ -1,15 +1,14 @@
 ﻿namespace ChiFouMi
 {
-    using ChiFouMi.Horrible;
-    using ChiFouMi.Perfect;
-    using ChiFouMi.Perfect.Variants;
+    using Horrible;
+    using Perfect;
 
     internal static class Program
     {
         private static readonly HorribleExternalDependecies HorribleExternalDependecies = new HorribleExternalDependecies();
 
         //private static readonly IChiFouMi ChiFouMi = new HorribleChiFouMi(HorribleExternalDependecies);
-        private static readonly IChiFouMi ChiFouMi = new ChiFouMiFactory(HorribleExternalDependecies, ChiFuMiMode.Extended).Create();
+        private static readonly IChiFouMi ChiFouMi = new ChiFouMiFactory(5, HorribleExternalDependecies, ChiFuMiMode.Extended).Create();
 
         private static void Main(string[] args)
         {

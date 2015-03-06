@@ -9,11 +9,14 @@
         private readonly List<string> _linesBuffer = new List<string>();
         private readonly Stack<string> _inputLines;
         private readonly int _seedForRandomGenerator;
+        private readonly int _randomUpperLimit;
 
         public TestExternalDependencies(
+            int randomUpperLimit,
             IEnumerable<string> inputLines,
             int seedForRandomGenerator)
         {
+            _randomUpperLimit = randomUpperLimit;
             _inputLines = new Stack<string>(inputLines.Reverse());
             _seedForRandomGenerator = seedForRandomGenerator;
         }
@@ -34,9 +37,9 @@
             return _inputLines.Pop();
         }
 
-        public int GetNextRandomBetween1And3()
+        public int GetRandomInt(int upperLimit)
         {
-            return new Random(_seedForRandomGenerator).Next(1, 4);
+            return new Random(_seedForRandomGenerator).Next(1, _randomUpperLimit);
         }
     }
 }

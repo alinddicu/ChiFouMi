@@ -84,7 +84,7 @@
 
                 #region business logic
                 r = new Random(DateTime.Now.Millisecond);
-                _intUv = (char)(_systemDependencies.GetNextRandomBetween1And3().ToString()[0] - 48);
+                _intUv = (char)(_systemDependencies.GetRandomInt(4).ToString()[0] - 48);
 
                 // TODO : A refactorer
                 // si ciseau et roxor

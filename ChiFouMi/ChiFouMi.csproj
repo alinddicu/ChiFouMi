@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Perfect\ChiFouMiFactory.cs" />
+    <Compile Include="Perfect\ChiFuMiMode.cs" />
     <Compile Include="Perfect\CoupType.cs" />
     <Compile Include="Horrible\HorribleChiFouMi.cs" />
     <Compile Include="Horrible\HorribleExternalDependecies.cs" />
@@ -52,7 +53,6 @@
     <Compile Include="Perfect\InputToCoupTypeConverter.cs" />
     <Compile Include="Perfect\PlayerTurnResult.cs" />
     <Compile Include="Perfect\Variants\ChiFouMiVariantsFactory.cs" />
-    <Compile Include="Perfect\ChiFuMiMode.cs" />
     <Compile Include="Perfect\Variants\Common\CommonVariant.cs" />
     <Compile Include="Perfect\Variants\Common\CommonVariantReferee.cs" />
     <Compile Include="Perfect\Variants\Common\CommonVariantRule.cs" />

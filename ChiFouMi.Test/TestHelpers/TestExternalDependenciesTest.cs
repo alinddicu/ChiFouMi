@@ -16,7 +16,7 @@
         {
             var list = new List<string> { "1", "2" };
             //list.Reverse();
-            _testExternalDependecies = new TestExternalDependencies(list, 1);
+            _testExternalDependecies = new TestExternalDependencies(4, list, 1);
 
             Check.That(_testExternalDependecies.ReadLine()).IsEqualTo("1");
             Check.That(_testExternalDependecies.ReadLine()).IsEqualTo("2");
@@ -25,7 +25,7 @@
         [TestMethod]
         public void GivenLineToWriteWhenGetWrittenLinesThenWrittenLinesAreCorrect()
         {
-            _testExternalDependecies = new TestExternalDependencies(new List<string>(), 1);
+            _testExternalDependecies = new TestExternalDependencies(4,new List<string>(), 1);
 
             _testExternalDependecies.WriteLine("nouvelle ligne");
 
@@ -49,13 +49,19 @@
         }
 
         [TestMethod]
-        public void WhenGetNextRandomBetween1And3ThenResultsAreBetween1And3()
+        public void WhenGetRandomIntThenResultsAreBetween1AndUpperLimit()
         {
-            for (var i = 0; i < 1000; i++)
+            for (var j = 3; j < 7; j++)
             {
-                _testExternalDependecies = new TestExternalDependencies(new List<string>(), DateTime.Now.Millisecond);
-                var randomGenerated = _testExternalDependecies.GetNextRandomBetween1And3();
-                Check.That(randomGenerated).IsGreaterThan(0).And.IsLessThan(4);
+                for (var i = 0; i < 1000; i++)
+                {
+                    _testExternalDependecies = new TestExternalDependencies(
+                        j,
+                        new List<string>(), 
+                        DateTime.Now.Millisecond);
+                    var randomGenerated = _testExternalDependecies.GetRandomInt(j);
+                    Check.That(randomGenerated).IsGreaterThan(0).And.IsLessThan(j);
+                }
             }
         }
     }

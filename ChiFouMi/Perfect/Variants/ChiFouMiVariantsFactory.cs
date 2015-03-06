@@ -7,11 +7,14 @@
     {
         private readonly ChiFuMiMode _mode;
         private readonly ISystemDependencies _systemDependencies;
+        private int _randomUpperLimit;
 
         public ChiFouMiVariantsFactory(
+            int randomUpperLimit,
             ChiFuMiMode mode,
             ISystemDependencies systemDependencies)
         {
+            _randomUpperLimit = randomUpperLimit;
             _mode = mode;
             _systemDependencies = systemDependencies;
         }
@@ -19,11 +22,15 @@
         public IEnumerable<IChiFouMiVariant> Create()
         {
             yield return new CommonVariant(
+                _randomUpperLimit,
                 _systemDependencies,
                 new InputToCoupTypeConverter(),
                 new CommonVariantReferee(
                     new CommonVariantRulesFactory(_mode)));
-            yield return new RoxorVariant(_systemDependencies, new InputToCoupTypeConverter());
+            yield return new RoxorVariant(
+                _randomUpperLimit,
+                _systemDependencies,
+                new InputToCoupTypeConverter());
         }
     }
 }
