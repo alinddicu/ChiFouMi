@@ -1,63 +1,110 @@
 ﻿namespace ChiFouMi.Perfect.Variants.Common
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class CommonVariantRulesFactory : ICommonVariantRulesFactory
     {
-        private readonly ChiFuMiMode _mode;
+        private readonly ChiFuMiMode _chiFuMiMode;
 
-        public CommonVariantRulesFactory(ChiFuMiMode mode)
+        public CommonVariantRulesFactory(ChiFuMiMode chiFuMiMode)
         {
-            _mode = mode;
+            _chiFuMiMode = chiFuMiMode;
+        }
+
+        private static IEnumerable<CommonVariantRule> YieldBaseWinRules()
+        {
+            yield return new CommonVariantRule(CoupType.Pierre, CoupType.Ciseaux, PlayerTurnResult.Gagne);
+            yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Feuille, PlayerTurnResult.Gagne);
+            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Pierre, PlayerTurnResult.Gagne);
+        }
+
+        private static IEnumerable<CommonVariantRule> YieldExtendedWinRules()
+        {
+            yield return new CommonVariantRule(CoupType.Pierre, CoupType.Lezard, PlayerTurnResult.Gagne);
+            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Spock, PlayerTurnResult.Gagne);
+            yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Lezard, PlayerTurnResult.Gagne);
+            yield return new CommonVariantRule(CoupType.Lezard, CoupType.Spock, PlayerTurnResult.Gagne);
+            yield return new CommonVariantRule(CoupType.Lezard, CoupType.Feuille, PlayerTurnResult.Gagne);
+            yield return new CommonVariantRule(CoupType.Spock, CoupType.Pierre, PlayerTurnResult.Gagne);
+            yield return new CommonVariantRule(CoupType.Spock, CoupType.Ciseaux, PlayerTurnResult.Gagne);
+        }
+
+        private static IEnumerable<CommonVariantRule> YieldBaseExceptionRules()
+        {
+            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Ciseaux, PlayerTurnResult.Perdu, "Pierre contre Feuille!");
+            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Pierre, PlayerTurnResult.Perdu, "Pierre contre Feuille!");
         }
 
         public IEnumerable<CommonVariantRule> Create()
         {
-            yield return new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Perdu);
-            yield return new CommonVariantRule(CoupType.Pierre, CoupType.Ciseaux, PlayerTurnResult.Gagne);
-            yield return new CommonVariantRule(CoupType.Pierre, CoupType.Pierre, PlayerTurnResult.Egalite);
-
-            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Feuille, PlayerTurnResult.Egalite);
-            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Ciseaux, PlayerTurnResult.Perdu, "Pierre contre Feuille!");
-            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Pierre, PlayerTurnResult.Perdu, "Pierre contre Feuille!");
-
-            yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Pierre, PlayerTurnResult.Perdu);
-            yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Feuille, PlayerTurnResult.Gagne);
-            yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Ciseaux, PlayerTurnResult.Egalite);
-
-            if (_mode != ChiFuMiMode.Extended)
-            {
-                yield break;
-            }
-
-            foreach (var rule in YieldExtendedModeRules())
-            {
-                yield return rule;
-            }
+            return _chiFuMiMode == ChiFuMiMode.Extended ? GenerateExtendedRules() : GenerateBaseRules();
         }
 
-        private IEnumerable<CommonVariantRule> YieldExtendedModeRules()
+        private IEnumerable<CommonVariantRule> GenerateBaseRules()
         {
-            yield return new CommonVariantRule(CoupType.Pierre, CoupType.Lezard, PlayerTurnResult.Gagne);
-            yield return new CommonVariantRule(CoupType.Pierre, CoupType.Spock, PlayerTurnResult.Perdu);
+            var winRules = YieldBaseWinRules().ToArray();
+            var equalityRules = GenerateBaseEqualityRules();
+            var looseRules = winRules.Select(GenerateLooseRule);
 
-            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Lezard, PlayerTurnResult.Perdu);
-            yield return new CommonVariantRule(CoupType.Feuille, CoupType.Spock, PlayerTurnResult.Gagne);
+            return SumAndApplyExceptionRules(winRules, equalityRules, looseRules);
+        }
 
-            yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Lezard, PlayerTurnResult.Gagne);
-            yield return new CommonVariantRule(CoupType.Ciseaux, CoupType.Spock, PlayerTurnResult.Perdu);
+        private IEnumerable<CommonVariantRule> GenerateExtendedRules()
+        {
+            var winRules = YieldBaseWinRules().Union(YieldExtendedWinRules()).ToArray();
+            var equalityRules = GenerateExtendeEqualityRules();
+            var looseRules = winRules.Select(GenerateLooseRule);
 
-            yield return new CommonVariantRule(CoupType.Lezard, CoupType.Lezard, PlayerTurnResult.Egalite);
-            yield return new CommonVariantRule(CoupType.Lezard, CoupType.Spock, PlayerTurnResult.Gagne);
-            yield return new CommonVariantRule(CoupType.Lezard, CoupType.Pierre, PlayerTurnResult.Perdu);
-            yield return new CommonVariantRule(CoupType.Lezard, CoupType.Feuille, PlayerTurnResult.Gagne);
-            yield return new CommonVariantRule(CoupType.Lezard, CoupType.Ciseaux, PlayerTurnResult.Perdu);
+            return SumAndApplyExceptionRules(winRules, equalityRules, looseRules);
+        }
 
-            yield return new CommonVariantRule(CoupType.Spock, CoupType.Pierre, PlayerTurnResult.Gagne);
-            yield return new CommonVariantRule(CoupType.Spock, CoupType.Feuille, PlayerTurnResult.Perdu);
-            yield return new CommonVariantRule(CoupType.Spock, CoupType.Ciseaux, PlayerTurnResult.Gagne);
-            yield return new CommonVariantRule(CoupType.Spock, CoupType.Lezard, PlayerTurnResult.Perdu);
-            yield return new CommonVariantRule(CoupType.Spock, CoupType.Spock, PlayerTurnResult.Egalite);
+        private static IEnumerable<CommonVariantRule> SumAndApplyExceptionRules(
+            IEnumerable<CommonVariantRule> winRules,
+            IEnumerable<CommonVariantRule> equalityRules,
+            IEnumerable<CommonVariantRule> looseRules)
+        {
+            var rules = new List<CommonVariantRule>();
+            rules.AddRange(winRules);
+            rules.AddRange(equalityRules);
+            rules.AddRange(looseRules);
+
+            var baseExceptionRules = YieldBaseExceptionRules().ToArray();
+
+            rules = rules.Except(baseExceptionRules).ToList();
+            rules.AddRange(baseExceptionRules);
+
+            return rules;
+        }
+
+        private static IEnumerable<CommonVariantRule> GenerateBaseEqualityRules()
+        {
+            return Enum
+                .GetValues(typeof(CoupType))
+                .OfType<CoupType>()
+                .Where(coup => coup.IsCoupElligible())
+                .Where(coup => !coup.IsExtendedCoup())
+                .Select(GenerateEqualityRule);
+        }
+
+        private static IEnumerable<CommonVariantRule> GenerateExtendeEqualityRules()
+        {
+            return Enum
+                .GetValues(typeof(CoupType))
+                .OfType<CoupType>()
+                .Where(coup => coup.IsCoupElligible())
+                .Select(GenerateEqualityRule);
+        }
+
+        private static CommonVariantRule GenerateEqualityRule(CoupType coup)
+        {
+            return new CommonVariantRule(coup, coup, PlayerTurnResult.Egalite);
+        }
+
+        private static CommonVariantRule GenerateLooseRule(CommonVariantRule winRule)
+        {
+            return new CommonVariantRule(winRule.ComputerCoup, winRule.PlayerCoup, PlayerTurnResult.Perdu);
         }
     }
 }

@@ -18,10 +18,26 @@
         [TestMethod]
         public void ForAllCoupElligiblesWhenIsCoupElligibleReturnTrue()
         {
-            foreach (var coupElligile in Enum.GetValues(typeof(CoupType)).OfType<CoupType>().ToList().Except(new[] { CoupType.None }))
+            var coupsElligibles = Enum
+                .GetValues(typeof(CoupType))
+                .OfType<CoupType>()
+                .ToArray()
+                .Except(new[] { CoupType.None });
+            foreach (var coupElligile in coupsElligibles)
             {
                 Check.That(coupElligile.IsCoupElligible()).IsTrue();
             }
+        }
+
+        [TestMethod]
+        public void CheckIsExtendedCoup()
+        {
+            Check.That(CoupType.None.IsExtendedCoup()).IsFalse();
+            Check.That(CoupType.Ciseaux.IsExtendedCoup()).IsFalse();
+            Check.That(CoupType.Feuille.IsExtendedCoup()).IsFalse();
+            Check.That(CoupType.Pierre.IsExtendedCoup()).IsFalse();
+            Check.That(CoupType.Lezard.IsExtendedCoup()).IsTrue();
+            Check.That(CoupType.Spock.IsExtendedCoup()).IsTrue();
         }
     }
 }
