@@ -21,7 +21,7 @@
 
         public static bool IsExtendedCoup(this CoupType coup)
         {
-            return coup.IsCoupElligible() && (coup == CoupType.Lezard || coup == CoupType.Spock);
+            return coup == CoupType.Lezard || coup == CoupType.Spock;
         }
 
         public static IEnumerable<CoupType> GetCoupsElligibles(ChiFuMiMode commonMode)

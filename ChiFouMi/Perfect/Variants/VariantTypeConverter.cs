@@ -12,10 +12,7 @@
                 return convertedValue;
             }
 
-            if (Enum.TryParse(ToTitleCase(input.ToString()), out convertedValue))
-            {
-                return convertedValue;
-            }
+            Enum.TryParse(ToTitleCase(input.ToString()), out convertedValue);
 
             return convertedValue;
         }

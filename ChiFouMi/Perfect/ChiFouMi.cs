@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using Variants;
-    using Variants.Common;
 
     public class ChiFouMi : IChiFouMi
     {
@@ -13,7 +12,7 @@
         private const string EntreeOuExitText = "Taper sur la touche entrée pour commencer une partie, ou 'exit' pour quitter.";
 
         private readonly ISystemDependencies _systemDependencies;
-        private readonly DisplayChoixCoupGenerator _displayChoixCoup;
+        private readonly DisplayChoixCoupGenerator _displayChoixCoupGenerator;
         private readonly InputToCoupTypeConverter _inputToCoupTypeConverter;
         private readonly VariantTypeConverter _variantTypeConverter;
         private readonly IChiFouMiVariant[] _allVariants;
@@ -22,14 +21,14 @@
         public ChiFouMi(
             ChiFuMiMode mode,
             ISystemDependencies systemDependencies,
-            DisplayChoixCoupGenerator displayChoixCoup,
+            DisplayChoixCoupGenerator displayChoixCoupGenerator,
             InputToCoupTypeConverter inputToCoupTypeConverter,
             VariantTypeConverter variantTypeConverter,
             ChiFouMiVariantsFactory chiFouMiVariantsFactory)
         {
             _mode = mode;
             _systemDependencies = systemDependencies;
-            _displayChoixCoup = displayChoixCoup;
+            _displayChoixCoupGenerator = displayChoixCoupGenerator;
             _inputToCoupTypeConverter = inputToCoupTypeConverter;
             _variantTypeConverter = variantTypeConverter;
             _allVariants = chiFouMiVariantsFactory.Create().ToArray();
@@ -72,7 +71,7 @@
 
         private void DisplayChoixCoup()
         {
-            foreach (var choixCoup in _displayChoixCoup.Generate(_mode))
+            foreach (var choixCoup in _displayChoixCoupGenerator.Generate(_mode))
             {
                 _systemDependencies.WriteLine(choixCoup);
             }

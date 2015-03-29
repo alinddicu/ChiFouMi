@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
 
     public class DisplayChoixCoupGenerator
     {
@@ -9,10 +10,9 @@
 
         public IEnumerable<string> Generate(ChiFuMiMode mode)
         {
-            foreach (var coup in CoupTypeExtensions.GetCoupsElligibles(mode))
-            {
-                yield return string.Format(CultureInfo.InvariantCulture, ChoixCoupLineFormat, (int)coup, coup);
-            }
+            return CoupTypeExtensions
+                .GetCoupsElligibles(mode)
+                .Select(coup => string.Format(CultureInfo.InvariantCulture, ChoixCoupLineFormat, (int)coup, coup));
         }
     }
 }

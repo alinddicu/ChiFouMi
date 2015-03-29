@@ -4,8 +4,6 @@
 
     public class CommonVariantRule
     {
-        private const string DecisionText = "{0} contre {1}!";
-
         public CommonVariantRule(
             CoupType playerCoup,
             CoupType computerCoup,
@@ -30,10 +28,10 @@
         {
             const string format = "{0}, {1}, {2}, {3}";
             return string.Format(
-                CultureInfo.InvariantCulture, 
-                format, 
-                PlayerCoup, 
-                ComputerCoup, 
+                CultureInfo.InvariantCulture,
+                format,
+                PlayerCoup,
+                ComputerCoup,
                 PlayerTurnResult,
                 OverridenAnnouncement);
         }
@@ -45,7 +43,8 @@
                 return OverridenAnnouncement;
             }
 
-            return string.Format(CultureInfo.InvariantCulture, DecisionText, PlayerCoup, ComputerCoup);
+            const string decisionText = "{0} contre {1}!";
+            return string.Format(CultureInfo.InvariantCulture, decisionText, PlayerCoup, ComputerCoup);
         }
 
         public override bool Equals(object obj)
@@ -65,7 +64,7 @@
 
         private bool Equals(CommonVariantRule other)
         {
-            return Equals(PlayerCoup, other.PlayerCoup) 
+            return Equals(PlayerCoup, other.PlayerCoup)
                 && Equals(ComputerCoup, other.ComputerCoup);
         }
 

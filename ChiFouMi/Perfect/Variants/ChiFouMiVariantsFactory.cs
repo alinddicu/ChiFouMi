@@ -1,13 +1,13 @@
 ﻿namespace ChiFouMi.Perfect.Variants
 {
     using System.Collections.Generic;
-    using Perfect.Variants.Common;
+    using Common;
 
     public class ChiFouMiVariantsFactory
     {
         private readonly ChiFuMiMode _mode;
         private readonly ISystemDependencies _systemDependencies;
-        private int _randomUpperLimit;
+        private readonly int _randomUpperLimit;
 
         public ChiFouMiVariantsFactory(
             int randomUpperLimit,
@@ -27,6 +27,7 @@
                 new InputToCoupTypeConverter(),
                 new CommonVariantReferee(
                     new CommonVariantRulesFactory(_mode)));
+
             yield return new RoxorVariant(
                 _randomUpperLimit,
                 _systemDependencies,
