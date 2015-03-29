@@ -32,7 +32,7 @@
                 WriteLinesOnGagne(computerChoice);
             }
 
-            return TurnNextAction.Continue;
+            return TurnNextAction.Play;
         }
 
         private void WriteLinesOnGagne(CoupType computerChoice)

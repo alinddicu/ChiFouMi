@@ -24,7 +24,7 @@
         {
             var turnDecision = _referee.Decide(CoupType.Pierre, CoupType.Feuille);
 
-            Check.That(turnDecision.TurnNextAction).IsEqualTo(TurnNextAction.Continue);
+            Check.That(turnDecision.TurnNextAction).IsEqualTo(TurnNextAction.Play);
         }
 
         [TestMethod]

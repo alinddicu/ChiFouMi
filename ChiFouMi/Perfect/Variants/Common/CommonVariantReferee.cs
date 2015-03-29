@@ -21,7 +21,7 @@
 
             return new TurnDecision(
                 appliedRule.PlayerTurnResult, 
-                TurnNextAction.Continue,
+                TurnNextAction.Play,
                 appliedRule.ToAnnouncement());
         }
     }

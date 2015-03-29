@@ -3,6 +3,6 @@
     public enum TurnNextAction
     {
         Exit,
-        Continue
+        Play
     }
 }
