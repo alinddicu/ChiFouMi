@@ -28,13 +28,13 @@
         {
             var computerCoup = GenerateComputerCoup();
             var turnDecision = _referee.Decide(playerCoup, computerCoup);
-            if (turnDecision.TurnNextAction != TurnNextAction.Continue)
+            if (turnDecision.TurnNextAction != TurnNextAction.Play)
             {
                 return TurnNextAction.Exit;
             }
 
             AnnounceTurnDecision(turnDecision);
-            return TurnNextAction.Continue;
+            return TurnNextAction.Play;
         }
 
         private void AnnounceTurnDecision(TurnDecision turnDecision)
