@@ -49,11 +49,6 @@
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(this, null))
-            {
-                return false;
-            }
-
             if (ReferenceEquals(this, obj))
             {
                 return true;

@@ -2,10 +2,9 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using ChiFouMi.Horrible;
+    using Horrible;
     using ChiFouMi.Perfect;
-    using ChiFouMi.Perfect.Variants;
-    using ChiFouMi.Test.TestHelpers;
+    using TestHelpers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using NFluent;
 

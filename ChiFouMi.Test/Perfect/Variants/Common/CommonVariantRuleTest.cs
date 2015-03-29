@@ -50,6 +50,7 @@
 
             Check.That(rule1.Equals(null)).IsFalse();
             Check.That(Equals(rule1, null)).IsFalse();
+            Check.That(Equals(null, rule1)).IsFalse();
         }
 
         [TestMethod]
@@ -58,6 +59,33 @@
             var rule1 = new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Perdu);
 
             Check.That(rule1.Equals(rule1)).IsTrue();
+        }
+
+        [TestMethod]
+        public void GivenRule1EqualsRule2WhenEqualsThenReturnTrue()
+        {
+            var rule1 = new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Perdu);
+            var rule2 = new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Gagne);
+
+            Check.That(rule1.Equals(rule2)).IsTrue();
+        }
+
+        [TestMethod]
+        public void GivenRule1NotEqualsRule2WhenEqualsThenReturnFalse()
+        {
+            var rule1 = new CommonVariantRule(CoupType.Pierre, CoupType.Feuille, PlayerTurnResult.Perdu);
+            var rule2 = new CommonVariantRule(CoupType.Pierre, CoupType.Lezard, PlayerTurnResult.Gagne);
+
+            Check.That(rule1.Equals(rule2)).IsFalse();
+        }
+
+        [TestMethod]
+        public void GivenRule1NotEqualsRule2WhenEqualsThenReturnFalseBis()
+        {
+            var rule1 = new CommonVariantRule(CoupType.Spock, CoupType.Lezard, PlayerTurnResult.Perdu);
+            var rule2 = new CommonVariantRule(CoupType.Pierre, CoupType.Lezard, PlayerTurnResult.Gagne);
+
+            Check.That(rule1.Equals(rule2)).IsFalse();
         }
 
         [TestMethod]
