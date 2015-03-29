@@ -24,7 +24,7 @@
         {
             var turnDecision = _referee.Decide(CoupType.Pierre, CoupType.Feuille);
 
-            Check.That(turnDecision).Not.IsNull();
+            Check.That(turnDecision.TurnNextAction).IsEqualTo(TurnNextAction.Continue);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@
         {
             var turnDecision = _referee.Decide(CoupType.None, CoupType.Feuille);
 
-            Check.That(turnDecision).IsNull();
+            Check.That(turnDecision.TurnNextAction).IsEqualTo(TurnNextAction.Exit);
         }
 
         private class CommonVariantRulesFactoryFake : ICommonVariantRulesFactory

@@ -13,10 +13,16 @@
 
         public TurnDecision Decide(CoupType playerCoup, CoupType computerCoup)
         {
-            return _rules
-                .Where(rule => rule.PlayerCoup == playerCoup && rule.ComputerCoup == computerCoup)
-                .Select(rule => new TurnDecision(rule.PlayerTurnResult, rule.ToAnnouncement()))
-                .SingleOrDefault();
+            var appliedRule = _rules.SingleOrDefault(rule => rule.PlayerCoup == playerCoup && rule.ComputerCoup == computerCoup);
+            if (appliedRule == null)
+            {
+                return new TurnDecision(TurnNextAction.Exit);
+            }
+
+            return new TurnDecision(
+                appliedRule.PlayerTurnResult, 
+                TurnNextAction.Continue,
+                appliedRule.ToAnnouncement());
         }
     }
 }

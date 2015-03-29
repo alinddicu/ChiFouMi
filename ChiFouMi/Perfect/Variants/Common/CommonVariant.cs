@@ -26,18 +26,26 @@
 
         public TurnNextAction PlayTurn(CoupType playerCoup)
         {
-            var computerCoup = _inputToCoupTypeConverter.Convert(_dependencies.GetRandomInt(_randomUpperLimit));
+            var computerCoup = GenerateComputerCoup();
             var turnDecision = _referee.Decide(playerCoup, computerCoup);
-
-            if (turnDecision == null)
+            if (turnDecision.TurnNextAction != TurnNextAction.Continue)
             {
                 return TurnNextAction.Exit;
             }
 
+            AnnounceTurnDecision(turnDecision);
+            return TurnNextAction.Continue;
+        }
+
+        private void AnnounceTurnDecision(TurnDecision turnDecision)
+        {
             _dependencies.WriteLine(turnDecision.Announcement);
             _dependencies.WriteLine(turnDecision.PlayerTurnResult.Announce());
+        }
 
-            return TurnNextAction.Continue;
+        private CoupType GenerateComputerCoup()
+        {
+            return _inputToCoupTypeConverter.Convert(_dependencies.GetRandomInt(_randomUpperLimit));
         }
     }
 }
