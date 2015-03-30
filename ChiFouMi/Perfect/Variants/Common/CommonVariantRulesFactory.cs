@@ -48,19 +48,19 @@
             var equalityRules = GenerateBaseEqualityRules();
             var looseRules = winRules.Select(GenerateLooseRule);
 
-            return SumAndApplyExceptionRules(winRules, equalityRules, looseRules);
+            return GenerateAllRulesWithExceptions(winRules, equalityRules, looseRules);
         }
 
         private IEnumerable<CommonVariantRule> GenerateExtendedRules()
         {
             var winRules = YieldBaseWinRules().Union(YieldExtendedWinRules()).ToArray();
-            var equalityRules = GenerateExtendeEqualityRules();
+            var equalityRules = GenerateExtendedEqualityRules();
             var looseRules = winRules.Select(GenerateLooseRule);
 
-            return SumAndApplyExceptionRules(winRules, equalityRules, looseRules);
+            return GenerateAllRulesWithExceptions(winRules, equalityRules, looseRules);
         }
 
-        private static IEnumerable<CommonVariantRule> SumAndApplyExceptionRules(
+        private static IEnumerable<CommonVariantRule> GenerateAllRulesWithExceptions(
             IEnumerable<CommonVariantRule> winRules,
             IEnumerable<CommonVariantRule> equalityRules,
             IEnumerable<CommonVariantRule> looseRules)
@@ -88,7 +88,7 @@
                 .Select(GenerateEqualityRule);
         }
 
-        private static IEnumerable<CommonVariantRule> GenerateExtendeEqualityRules()
+        private static IEnumerable<CommonVariantRule> GenerateExtendedEqualityRules()
         {
             return Enum
                 .GetValues(typeof(CoupType))
